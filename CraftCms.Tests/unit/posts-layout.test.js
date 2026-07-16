@@ -39,17 +39,17 @@ test('site CSS encodes the archive typography and panel layout rules', () => {
   assert.match(siteCss, /--font-body:\s*"Open Sans",\s*sans-serif;/);
   assert.match(siteCss, /--font-heading:\s*"Playfair Display",\s*serif;/);
   assert.match(siteCss, /--font-brand:\s*"Dancing Script",\s*cursive;/);
-  assert.match(siteCss, /\.chip\s*\{[\s\S]*display:\s*inline-block;/);
-  assert.match(siteCss, /--color-pair-gold-bg:\s*#e8eede;/);
+  assert.match(siteCss, /\.chip\s*\{[\s\S]*display:\s*inline-flex;/);
+  assert.match(siteCss, /--color-pair-gold-bg:\s*#efe9da;/);
   assert.match(siteCss, /--color-pair-sand-bg:\s*#f3efe6;/);
-  assert.match(siteCss, /--color-pair-sage-bg:\s*#edf2ea;/);
-  assert.match(siteCss, /--color-pair-olive-bg:\s*#e7eee2;/);
-  assert.match(siteCss, /--color-pair-stone-bg:\s*#edf0f2;/);
-  assert.match(siteCss, /--color-pair-rose-bg:\s*#f6e6e2;/);
-  assert.match(siteCss, /--color-pair-sky-bg:\s*#e7eef5;/);
+  assert.match(siteCss, /--color-pair-sage-bg:\s*#e3ede4;/);
+  assert.match(siteCss, /--color-pair-olive-bg:\s*#ece8d8;/);
+  assert.match(siteCss, /--color-pair-stone-bg:\s*#e8e2d8;/);
+  assert.match(siteCss, /--color-pair-rose-bg:\s*#f2dddd;/);
+  assert.match(siteCss, /--color-pair-sky-bg:\s*#dde8f2;/);
   assert.match(siteCss, /--color-pair-clay-bg:\s*#f3e5dc;/);
-  assert.match(siteCss, /--color-pair-plum-bg:\s*#ece7f3;/);
-  assert.match(siteCss, /--color-pair-ink-bg:\s*#e8ebf1;/);
+  assert.match(siteCss, /--color-pair-plum-bg:\s*#e8dde8;/);
+  assert.match(siteCss, /--color-pair-ink-bg:\s*#ddd;/);
   assert.match(siteCss, /--color-pair-moss-bg:\s*#e1e9d9;/);
   assert.match(siteCss, /--color-pair-lavender-bg:\s*#e8e3f0;/);
   assert.match(siteCss, /--color-pair-peach-bg:\s*#f5e8df;/);
@@ -70,7 +70,7 @@ test('site CSS encodes the archive typography and panel layout rules', () => {
 });
 
 test('template and CSS still advertise the visible project archive chrome', () => {
-  assert.match(postsTemplate, /<aside class="sidebar">/);
+  assert.match(postsTemplate, /<aside class="sidebar sidebar--sticky">/);
   assert.match(postsTemplate, /<div class="container-section-header">Project Type<\/div>/);
   assert.match(postsTemplate, /<div class="container-section-header">Categories<\/div>/);
   assert.match(postsTemplate, /<div class="container-section-header">Tags<\/div>/);
