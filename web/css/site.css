@@ -25,39 +25,39 @@
     --gitlab-hover-bg: #fff3ea;
     --gitlab-hover-border: #f7c6a5;
 
-    /* Color pairs */
-    --color-pair-gold-bg: #e8eede;
+    /* Color pairs — higher contrast text colours (ported from KnitStitch) */
+    --color-pair-gold-bg: #efe9da;
     --color-pair-gold-text: var(--primary-dark);
     --color-pair-sand-bg: #f3efe6;
-    --color-pair-sand-text: #7a6447;
-    --color-pair-sage-bg: #edf2ea;
-    --color-pair-sage-text: #55725d;
-    --color-pair-olive-bg: #e7eee2;
-    --color-pair-olive-text: #60704c;
-    --color-pair-sky-bg: #e7eef5;
-    --color-pair-sky-text: #4d6980;
-    --color-pair-stone-bg: #edf0f2;
-    --color-pair-stone-text: #59636d;
-    --color-pair-rose-bg: #f6e6e2;
-    --color-pair-rose-text: #8a5c50;
+    --color-pair-sand-text: #5a4427;
+    --color-pair-sage-bg: #e3ede4;
+    --color-pair-sage-text: #3a6b42;
+    --color-pair-olive-bg: #ece8d8;
+    --color-pair-olive-text: #6b6333;
+    --color-pair-sky-bg: #dde8f2;
+    --color-pair-sky-text: #2c5f8a;
+    --color-pair-stone-bg: #e8e2d8;
+    --color-pair-stone-text: #6b6356;
+    --color-pair-rose-bg: #f2dddd;
+    --color-pair-rose-text: #8a2c2c;
     --color-pair-clay-bg: #f3e5dc;
-    --color-pair-clay-text: #8a604b;
-    --color-pair-plum-bg: #ece7f3;
-    --color-pair-plum-text: #66517a;
-    --color-pair-ink-bg: #e8ebf1;
-    --color-pair-ink-text: #536074;
+    --color-pair-clay-text: #6a402b;
+    --color-pair-plum-bg: #e8dde8;
+    --color-pair-plum-text: #6a3d6a;
+    --color-pair-ink-bg: #ddd;
+    --color-pair-ink-text: #111111;
     --color-pair-moss-bg: #e1e9d9;
-    --color-pair-moss-text: #5a6b4e;
+    --color-pair-moss-text: #3a4b2e;
     --color-pair-lavender-bg: #e8e3f0;
-    --color-pair-lavender-text: #6a5a7d;
+    --color-pair-lavender-text: #4a3a5d;
     --color-pair-peach-bg: #f5e8df;
-    --color-pair-peach-text: #8a6a5a;
+    --color-pair-peach-text: #6a4a3a;
     --color-pair-slate-bg: #e2e6eb;
-    --color-pair-slate-text: #4a5568;
+    --color-pair-slate-text: #2a3548;
     --color-pair-rust-bg: #f0e3db;
-    --color-pair-rust-text: #9a5a42;
+    --color-pair-rust-text: #7a3a22;
     --color-pair-berry-bg: #efe2e6;
-    --color-pair-berry-text: #7a4a5a;
+    --color-pair-berry-text: #5a2a3a;
 
     /* Shadows */
     --shadow-sm: 0 1px 0 rgba(17, 17, 17, 0.03);
@@ -74,8 +74,8 @@
     --type-h4: 18px;
     --type-h5: 14px;
     --type-h6: 12px;
-    --type-body: 16px;
-    --type-subtitle: 14px;
+    --type-body: 14px;
+    --type-subtitle: 13px;
     --type-caption: 12px;
     --type-button: 12px;
 }
@@ -144,7 +144,7 @@ h2 {
 }
 
 h3 {
-    margin-block: 1.25em 0.45em;
+    margin-block: 1.25em 0.25em;
     margin-inline: 0;
     font-family: var(--font-body);
     font-size: var(--type-h3);
@@ -188,8 +188,7 @@ h6:first-child {
     margin-block-start: 0;
 }
 
-.body,
-.container-content {
+.body {
     font-size: var(--type-body);
     line-height: 1.7;
 }
@@ -276,7 +275,7 @@ td {
 
 .page-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
+    grid-template-columns: minmax(0, 1fr) 340px;
     gap: 14px;
     align-items: start;
 }
@@ -655,8 +654,9 @@ ol > li::before {
 }
 
 .list {
+    list-style: none;
+    padding: 0;
     margin: 0;
-    gap: 8px;
 }
 
 .list > li {
@@ -665,6 +665,16 @@ ol > li::before {
 
 .list > li::before {
     content: none;
+}
+
+.panel--padded .list > li {
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+}
+
+.panel--padded .list > li:first-child {
+    border-top: 0;
+    padding-top: 0;
 }
 
 /* ==========================================================================
@@ -815,7 +825,8 @@ select:focus {
 }
 
 .panel--padded {
-    padding: 18px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
 }
 
 .panel--image-top {
@@ -860,13 +871,13 @@ select:focus {
    15. Chips & Color Pairs
    ========================================================================== */
 .chip {
-    display: inline-block;
-    margin: 0 8px 8px 0;
-    padding: 5px 10px;
-    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 12px;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.4px;
     white-space: nowrap;
     text-transform: uppercase;
 }
@@ -973,7 +984,7 @@ select:focus {
 
 .sidebar--sticky {
     position: sticky;
-    top: 109px;
+    top: 129px;
 }
 
 .container-sections {
@@ -1015,6 +1026,20 @@ select:focus {
     padding: 14px;
 }
 
+/* Changelog sidebar blocks — moved into the sidebar via JS. They need their
+   own gap since they sit inside a plain div, not .container-sections. */
+.changelog-types-sidebar {
+    display: grid;
+    gap: 14px;
+}
+
+/* Version list panel — cap height and scroll so a long version list does not
+   push the sidebar past the page content. */
+.changelog-versions .container-section-body {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
 .container-actions {
     margin-top: 14px;
     display: flex;
@@ -1040,7 +1065,7 @@ select:focus {
 }
 
 /* ==========================================================================
-   17b. Change Log Tabs
+   17b. Changelog Tabs
    ========================================================================== */
 .changelog-tabs {
     display: flex;
@@ -1048,17 +1073,16 @@ select:focus {
     gap: 0;
 }
 
-.changelog-tablist {
+.tab-bar {
     display: flex;
     gap: 0;
     border-bottom: 2px solid var(--border);
+    margin-bottom: 24px;
 }
 
-.changelog-tab {
+.tab-btn {
     padding: 10px 24px;
-    border: 1px solid transparent;
-    border-bottom: none;
-    border-radius: 6px 6px 0 0;
+    border: none;
     background: transparent;
     color: var(--body-light);
     font-family: var(--font-body);
@@ -1067,27 +1091,25 @@ select:focus {
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
-}
-
-.changelog-tab:hover {
-    color: var(--primary);
-    background: var(--secondary-light);
-}
-
-.changelog-tab.active {
-    color: var(--primary-dark);
-    background: var(--secondary-light);
-    border-color: var(--border);
+    border-bottom: 3px solid transparent;
     margin-bottom: -2px;
+    transition: color 140ms ease, border-color 140ms ease;
 }
 
-.changelog-tabpanel {
+.tab-btn:hover {
+    color: var(--body-dark);
+}
+
+.tab-btn.active {
+    color: var(--primary-dark);
+    border-bottom-color: var(--primary);
+}
+
+.tab-panel {
     display: none;
-    padding-top: 18px;
 }
 
-.changelog-tabpanel.active {
+.tab-panel.active {
     display: block;
 }
 
