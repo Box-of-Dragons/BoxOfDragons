@@ -126,9 +126,9 @@ Pages that extend the base layout:
   - shared page subheader
   - the same content shell as a post detail page
 
-### Change Log Page
+### Changelog Page
 
-- Template: `templates/_entries/change-log-page.twig`
+- Template: `templates/_entries/changelog-page.twig`
 - Purpose: reusable page for rendering a build-time changelog from git history
 - Uses:
   - shared header and footer

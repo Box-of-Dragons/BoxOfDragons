@@ -1,10 +1,10 @@
 const { expect, test } = require('@playwright/test');
 
-test.describe('change log page', () => {
+test.describe('changelog page', () => {
   test('loads the generated changelog and exposes its sections', async ({ page }) => {
-    await page.goto('https://craftcms.ddev.site/change-log');
+    await page.goto('https://craftcms.ddev.site/changelog');
 
-    await expect(page).toHaveTitle(/Change Log/);
+    await expect(page).toHaveTitle(/Changelog/);
     await expect(page.locator('body')).toContainText('Build Snapshot');
     await expect(page.locator('body')).toContainText('Change Types');
     await expect(page.locator('body')).toContainText('Features');

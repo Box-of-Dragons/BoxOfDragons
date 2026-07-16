@@ -80,7 +80,7 @@ The generator:
 1. Reads all git tags matching `vX.Y.Z` and uses the latest tag as the starting version.
 2. Walks the commit log (oldest first) from the last tagged commit.
 3. Bumps the version per the rules above for each commit.
-4. Outputs the resolved version to `templates/_generated/build-info.twig` (Twig variables consumed server-side by the footer) and `templates/_generated/change-log.twig` (Twig changelog). The `--format=js` and `--format=csharp` outputs are still supported by the generator but no longer produced by `composer build-info`.
+4. Outputs the resolved version to `templates/_generated/build-info.twig` (Twig variables consumed server-side by the footer) and `templates/_generated/changelog.twig` (Twig changelog). The `--format=js` and `--format=csharp` outputs are still supported by the generator but no longer produced by `composer build-info`.
 
 If no tags exist, the version starts at `v1.0.0`.
 

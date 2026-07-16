@@ -6,7 +6,7 @@
     {% set siteHeader = craft.app.globals.getSetByHandle('siteHeader') %}
     {% set siteName = siteHeader and siteHeader.siteName ? siteHeader.siteName : '' %}
     <title>{{ entry.title }} - {{ siteName }}</title>
-    <meta name="description" content="A human readable change log generated from commits and version tags.">
+    <meta name="description" content="A human readable changelog generated from commits and version tags.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
 {% include '_partials/page-subheader.twig' with {
     pageName: entry.title
 } %}
-{% set generatedChangeLog = include('_generated/change-log.twig', ignore_missing = true) %}
+{% set generatedChangeLog = include('_generated/changelog.twig', ignore_missing = true) %}
 
 <main class="page-main">
     <div class="shell page-layout">
@@ -26,7 +26,7 @@
             {% if generatedChangeLog|trim %}
                 {{ generatedChangeLog|raw }}
             {% else %}
-                <h1>Change log unavailable</h1>
+                <h1>Changelog unavailable</h1>
                 <p class="body">Run the build-info generator to create the changelog fragment before publishing this page.</p>
             {% endif %}
         </div>
@@ -39,6 +39,7 @@
                         <div class="body">This page is generated from conventional commits and git tags during the build step. The latest build snapshot, production version, commit count, and recent commits grouped into simple readable sections.</div>
                     </div>
                 </section>
+                <div class="changelog-types-sidebar" id="changelog-types-sidebar"></div>
             </div>
         </aside>
     </div>
@@ -48,24 +49,51 @@
 
 <script>
 (function () {
-    var tabs = document.querySelectorAll('.changelog-tab');
+    var tabs = document.querySelectorAll('.tab-btn');
     if (!tabs.length) return;
-    tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-            tabs.forEach(function (t) {
-                t.classList.remove('active');
-                t.setAttribute('aria-selected', 'false');
-            });
-            tab.classList.add('active');
-            tab.setAttribute('aria-selected', 'true');
-            var panelId = tab.getAttribute('data-panel');
-            document.querySelectorAll('.changelog-tabpanel').forEach(function (p) {
-                p.classList.remove('active');
-            });
-            var panel = document.getElementById(panelId);
-            if (panel) panel.classList.add('active');
+
+    // Move the generated sidebar blocks (Change Types + Versions) into the
+    // sidebar placeholder so they appear under the About panel.
+    var typesSidebar = document.getElementById('changelog-types-sidebar');
+    var sidebarBlocks = document.querySelectorAll('.changelog-types, .changelog-versions');
+    if (typesSidebar) {
+        sidebarBlocks.forEach(function (block) {
+            typesSidebar.appendChild(block);
         });
+    }
+
+    function showSidebarBlocks(tabId) {
+        var version = tabId.replace('changelog-', '');
+        sidebarBlocks.forEach(function (block) {
+            block.style.display = block.getAttribute('data-version') === version ? '' : 'none';
+        });
+    }
+
+    function activateTab(tab) {
+        tabs.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        var panelId = tab.getAttribute('data-panel');
+        document.querySelectorAll('.tab-panel').forEach(function (p) {
+            p.classList.remove('active');
+        });
+        var panel = document.getElementById(panelId);
+        if (panel) panel.classList.add('active');
+        showSidebarBlocks(tab.getAttribute('data-tab'));
+    }
+
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () { activateTab(tab); });
     });
+
+    // Hide non-active sidebar blocks on initial load.
+    var activeTab = document.querySelector('.tab-btn.active');
+    if (activeTab) {
+        showSidebarBlocks(activeTab.getAttribute('data-tab'));
+    }
 })();
 </script>
 

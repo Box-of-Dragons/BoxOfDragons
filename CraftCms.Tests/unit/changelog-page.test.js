@@ -10,21 +10,24 @@ function read(relativePath) {
 }
 
 test('changelog page template renders the generated build history fragment', () => {
-  const template = read('templates/_entries/change-log-page.twig');
-  const generated = read('templates/_generated/change-log.twig');
+  const template = read('templates/_entries/changelog-page.twig');
+  const generated = read('templates/_generated/changelog.twig');
   const siteCss = read('web/css/site.css');
 
-  assert.match(template, /include\('_generated\/change-log\.twig',\s*ignore_missing\s*=\s*true\)/);
-  assert.match(template, /Change log unavailable/);
+  assert.match(template, /include\('_generated\/changelog\.twig',\s*ignore_missing\s*=\s*true\)/);
+  assert.match(template, /Changelog unavailable/);
   assert.match(template, /generated from conventional commits and git tags/i);
   assert.match(generated, /<div class="container-sections">/);
   assert.match(generated, /<section class="panel panel--padded">/);
   assert.match(generated, /Build Snapshot/);
   assert.match(generated, /Change Types/);
-  assert.match(generated, /aria-label="Change log sections"/);
+  assert.match(generated, /class="changelog-types changelog-types-v\d+ active"/);
+  assert.match(generated, /aria-label="Changelog sections"/);
   assert.match(generated, /href="#feature-changes-v\d+"/);
+  assert.match(template, /changelog-types-sidebar/);
+  assert.match(template, /typesSidebar\.appendChild/);
   assert.match(generated, /<ul class="list">/);
-  assert.match(generated, /<h4>Add reusable colour pairs to archive cards<\/h4>/);
+  assert.match(generated, /<h5>Add reusable colour pairs to archive cards<\/h5>/);
   assert.match(generated, /<span class="caption">/);
   assert.match(generated, /Replace inline footer markup with\s+include &#039;_partials\/site-footer\.twig&#039;/i);
   assert.match(generated, /in index\.twig, category\.twig, and tag\.twig/i);
@@ -48,11 +51,11 @@ test('changelog page config is wired as a single entry page', () => {
 
   assert.match(sectionConfig, /handle:\s*changeLogPage/);
   assert.match(sectionConfig, /type:\s*single/);
-  assert.match(sectionConfig, /template:\s*_entries\/change-log-page\.twig/);
-  assert.match(sectionConfig, /uriFormat:\s*change-log/);
-  assert.match(entryTypeConfig, /name:\s*'Change Log'/);
+  assert.match(sectionConfig, /template:\s*_entries\/changelog-page\.twig/);
+  assert.match(sectionConfig, /uriFormat:\s*changelog/);
+  assert.match(entryTypeConfig, /name:\s*'Changelog'/);
   assert.match(entryTypeConfig, /showSlugField:\s*false/);
-  assert.match(composer, /"build-changelog":\s*"@php scripts\/GenerateBuildInfo\.php --root=\. --output=templates\/_generated\/change-log\.twig --format=twig"/);
+  assert.match(composer, /"build-changelog":\s*"@php scripts\/GenerateBuildInfo\.php --root=\. --output=templates\/_generated\/changelog\.twig --format=twig"/);
   assert.match(composer, /"post-install-cmd":\s*\[\s*"@build-info"\s*\]/s);
   assert.match(generator, /elseif \(\$format === 'twig'\)/);
 });

@@ -1,38 +1,261 @@
 <div class="changelog-tabs" data-changelog-tabs>
-  <div class="changelog-tablist" role="tablist">
-    <button class="changelog-tab active" role="tab" data-tab="changelog-v2" data-panel="changelog-panel-v2" aria-controls="changelog-panel-v2" aria-selected="true">v2</button>
-    <button class="changelog-tab" role="tab" data-tab="changelog-v1" data-panel="changelog-panel-v1" aria-controls="changelog-panel-v1" aria-selected="false">v1</button>
+  <div class="tab-bar" role="tablist">
+    <button class="tab-btn active" role="tab" data-tab="changelog-v2" data-panel="changelog-panel-v2" aria-controls="changelog-panel-v2" aria-selected="true">v2</button>
+    <button class="tab-btn" role="tab" data-tab="changelog-v1" data-panel="changelog-panel-v1" aria-controls="changelog-panel-v1" aria-selected="false">v1</button>
   </div>
-  <div class="changelog-tabpanel active" id="changelog-panel-v2" role="tabpanel">
-    <div class="container-sections">
-      <section class="panel panel--padded">
-        <h2>Build Snapshot</h2>
-        <div class="container-actions">
-          <span class="chip color-pair-ink">Version v2.3.1.1</span>
-          <span class="chip color-pair-stone">181 commits</span>
-        </div>
-        <p class="body">Generated from conventional commits and git tags during the site build.</p>
-      </section>
-      <section class="panel panel--padded">
-        <h2>Change Types</h2>
-        <nav class="container-actions" aria-label="Change log sections">
-          <a class="chip color-pair-rose" href="#breaking-changes-v2">Breaking changes</a>
+  <div class="changelog-types changelog-types-v2 active" data-version="v2">
+    <div class="container-section--headed">
+      <div class="container-section-header">Change Types</div>
+      <div class="container-section-body">
+        <nav class="container-actions" aria-label="Changelog sections">
+          <a class="chip color-pair-rose" href="#breaking-changes-v2">Breaking Changes</a>
           <a class="chip color-pair-gold" href="#feature-changes-v2">Features</a>
           <a class="chip color-pair-sage" href="#fix-changes-v2">Fixes</a>
+          <a class="chip color-pair-stone" href="#refactor-changes-v2">Refactors</a>
+          <a class="chip color-pair-plum" href="#test-changes-v2">Tests</a>
           <a class="chip color-pair-olive" href="#chore-changes-v2">Maintenance</a>
         </nav>
+      </div>
+    </div>
+  </div>
+  <div class="changelog-types changelog-types-v1" data-version="v1">
+    <div class="container-section--headed">
+      <div class="container-section-header">Change Types</div>
+      <div class="container-section-body">
+        <nav class="container-actions" aria-label="Changelog sections">
+          <a class="chip color-pair-gold" href="#feature-changes-v1">Features</a>
+          <a class="chip color-pair-sage" href="#fix-changes-v1">Fixes</a>
+          <a class="chip color-pair-sky" href="#docs-changes-v1">Documentation</a>
+          <a class="chip color-pair-stone" href="#refactor-changes-v1">Refactors</a>
+          <a class="chip color-pair-plum" href="#test-changes-v1">Tests</a>
+          <a class="chip color-pair-olive" href="#chore-changes-v1">Maintenance</a>
+          <a class="chip color-pair-ink" href="#other-changes-v1">Other Changes</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="changelog-versions changelog-versions-v2 active" data-version="v2">
+    <div class="container-section--headed">
+      <div class="container-section-header">Versions</div>
+      <div class="container-section-body">
+        <ul class="list">
+          <li><a href="#v2.3.2.2"><span class="caption">v2.3.2.2</span></a></li>
+          <li><a href="#v2.3.2.1"><span class="caption">v2.3.2.1</span></a></li>
+          <li><a href="#v2.3.2"><span class="caption">v2.3.2</span></a></li>
+          <li><a href="#v2.3.1.1"><span class="caption">v2.3.1.1</span></a></li>
+          <li><a href="#v2.3.1"><span class="caption">v2.3.1</span></a></li>
+          <li><a href="#v2.3.0"><span class="caption">v2.3.0</span></a></li>
+          <li><a href="#v2.2.0"><span class="caption">v2.2.0</span></a></li>
+          <li><a href="#v2.1.0"><span class="caption">v2.1.0</span></a></li>
+          <li><a href="#v2.0.0"><span class="caption">v2.0.0</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="changelog-versions changelog-versions-v1" data-version="v1">
+    <div class="container-section--headed">
+      <div class="container-section-header">Versions</div>
+      <div class="container-section-body">
+        <ul class="list">
+          <li><a href="#v1.38.0.3"><span class="caption">v1.38.0.3</span></a></li>
+          <li><a href="#v1.38.0.2"><span class="caption">v1.38.0.2</span></a></li>
+          <li><a href="#v1.38.0.1"><span class="caption">v1.38.0.1</span></a></li>
+          <li><a href="#v1.38.0"><span class="caption">v1.38.0</span></a></li>
+          <li><a href="#v1.37.1.1"><span class="caption">v1.37.1.1</span></a></li>
+          <li><a href="#v1.37.1"><span class="caption">v1.37.1</span></a></li>
+          <li><a href="#v1.37.0"><span class="caption">v1.37.0</span></a></li>
+          <li><a href="#v1.36.1"><span class="caption">v1.36.1</span></a></li>
+          <li><a href="#v1.36.0.8"><span class="caption">v1.36.0.8</span></a></li>
+          <li><a href="#v1.36.0.7"><span class="caption">v1.36.0.7</span></a></li>
+          <li><a href="#v1.36.0.6"><span class="caption">v1.36.0.6</span></a></li>
+          <li><a href="#v1.36.0.5"><span class="caption">v1.36.0.5</span></a></li>
+          <li><a href="#v1.36.0.4"><span class="caption">v1.36.0.4</span></a></li>
+          <li><a href="#v1.36.0.3"><span class="caption">v1.36.0.3</span></a></li>
+          <li><a href="#v1.36.0.2"><span class="caption">v1.36.0.2</span></a></li>
+          <li><a href="#v1.36.0.1"><span class="caption">v1.36.0.1</span></a></li>
+          <li><a href="#v1.36.0"><span class="caption">v1.36.0</span></a></li>
+          <li><a href="#v1.35.2.2"><span class="caption">v1.35.2.2</span></a></li>
+          <li><a href="#v1.35.2.1"><span class="caption">v1.35.2.1</span></a></li>
+          <li><a href="#v1.35.2"><span class="caption">v1.35.2</span></a></li>
+          <li><a href="#v1.35.1"><span class="caption">v1.35.1</span></a></li>
+          <li><a href="#v1.35.0"><span class="caption">v1.35.0</span></a></li>
+          <li><a href="#v1.34.0.3"><span class="caption">v1.34.0.3</span></a></li>
+          <li><a href="#v1.34.0.2"><span class="caption">v1.34.0.2</span></a></li>
+          <li><a href="#v1.34.0.1"><span class="caption">v1.34.0.1</span></a></li>
+          <li><a href="#v1.34.0"><span class="caption">v1.34.0</span></a></li>
+          <li><a href="#v1.33.0"><span class="caption">v1.33.0</span></a></li>
+          <li><a href="#v1.32.2"><span class="caption">v1.32.2</span></a></li>
+          <li><a href="#v1.32.1.2"><span class="caption">v1.32.1.2</span></a></li>
+          <li><a href="#v1.32.1.1"><span class="caption">v1.32.1.1</span></a></li>
+          <li><a href="#v1.32.1"><span class="caption">v1.32.1</span></a></li>
+          <li><a href="#v1.32.0.4"><span class="caption">v1.32.0.4</span></a></li>
+          <li><a href="#v1.32.0.3"><span class="caption">v1.32.0.3</span></a></li>
+          <li><a href="#v1.32.0.2"><span class="caption">v1.32.0.2</span></a></li>
+          <li><a href="#v1.32.0.1"><span class="caption">v1.32.0.1</span></a></li>
+          <li><a href="#v1.32.0"><span class="caption">v1.32.0</span></a></li>
+          <li><a href="#v1.31.0"><span class="caption">v1.31.0</span></a></li>
+          <li><a href="#v1.30.0"><span class="caption">v1.30.0</span></a></li>
+          <li><a href="#v1.29.1"><span class="caption">v1.29.1</span></a></li>
+          <li><a href="#v1.29.0.3"><span class="caption">v1.29.0.3</span></a></li>
+          <li><a href="#v1.29.0.2"><span class="caption">v1.29.0.2</span></a></li>
+          <li><a href="#v1.29.0.1"><span class="caption">v1.29.0.1</span></a></li>
+          <li><a href="#v1.29.0"><span class="caption">v1.29.0</span></a></li>
+          <li><a href="#v1.28.0"><span class="caption">v1.28.0</span></a></li>
+          <li><a href="#v1.27.0.2"><span class="caption">v1.27.0.2</span></a></li>
+          <li><a href="#v1.27.0.1"><span class="caption">v1.27.0.1</span></a></li>
+          <li><a href="#v1.27.0"><span class="caption">v1.27.0</span></a></li>
+          <li><a href="#v1.26.0.9"><span class="caption">v1.26.0.9</span></a></li>
+          <li><a href="#v1.26.0.8"><span class="caption">v1.26.0.8</span></a></li>
+          <li><a href="#v1.26.0.7"><span class="caption">v1.26.0.7</span></a></li>
+          <li><a href="#v1.26.0.6"><span class="caption">v1.26.0.6</span></a></li>
+          <li><a href="#v1.26.0.5"><span class="caption">v1.26.0.5</span></a></li>
+          <li><a href="#v1.26.0.4"><span class="caption">v1.26.0.4</span></a></li>
+          <li><a href="#v1.26.0.3"><span class="caption">v1.26.0.3</span></a></li>
+          <li><a href="#v1.26.0.2"><span class="caption">v1.26.0.2</span></a></li>
+          <li><a href="#v1.26.0.1"><span class="caption">v1.26.0.1</span></a></li>
+          <li><a href="#v1.26.0"><span class="caption">v1.26.0</span></a></li>
+          <li><a href="#v1.25.0.2"><span class="caption">v1.25.0.2</span></a></li>
+          <li><a href="#v1.25.0.1"><span class="caption">v1.25.0.1</span></a></li>
+          <li><a href="#v1.25.0"><span class="caption">v1.25.0</span></a></li>
+          <li><a href="#v1.24.0.8"><span class="caption">v1.24.0.8</span></a></li>
+          <li><a href="#v1.24.0.7"><span class="caption">v1.24.0.7</span></a></li>
+          <li><a href="#v1.24.0.6"><span class="caption">v1.24.0.6</span></a></li>
+          <li><a href="#v1.24.0.5"><span class="caption">v1.24.0.5</span></a></li>
+          <li><a href="#v1.24.0.4"><span class="caption">v1.24.0.4</span></a></li>
+          <li><a href="#v1.24.0.3"><span class="caption">v1.24.0.3</span></a></li>
+          <li><a href="#v1.24.0.2"><span class="caption">v1.24.0.2</span></a></li>
+          <li><a href="#v1.24.0.1"><span class="caption">v1.24.0.1</span></a></li>
+          <li><a href="#v1.24.0"><span class="caption">v1.24.0</span></a></li>
+          <li><a href="#v1.23.1.4"><span class="caption">v1.23.1.4</span></a></li>
+          <li><a href="#v1.23.1.3"><span class="caption">v1.23.1.3</span></a></li>
+          <li><a href="#v1.23.1.2"><span class="caption">v1.23.1.2</span></a></li>
+          <li><a href="#v1.23.1.1"><span class="caption">v1.23.1.1</span></a></li>
+          <li><a href="#v1.23.1"><span class="caption">v1.23.1</span></a></li>
+          <li><a href="#v1.23.0.1"><span class="caption">v1.23.0.1</span></a></li>
+          <li><a href="#v1.23.0"><span class="caption">v1.23.0</span></a></li>
+          <li><a href="#v1.22.1.2"><span class="caption">v1.22.1.2</span></a></li>
+          <li><a href="#v1.22.1.1"><span class="caption">v1.22.1.1</span></a></li>
+          <li><a href="#v1.22.1"><span class="caption">v1.22.1</span></a></li>
+          <li><a href="#v1.22.0.5"><span class="caption">v1.22.0.5</span></a></li>
+          <li><a href="#v1.22.0.4"><span class="caption">v1.22.0.4</span></a></li>
+          <li><a href="#v1.22.0.3"><span class="caption">v1.22.0.3</span></a></li>
+          <li><a href="#v1.22.0.2"><span class="caption">v1.22.0.2</span></a></li>
+          <li><a href="#v1.22.0.1"><span class="caption">v1.22.0.1</span></a></li>
+          <li><a href="#v1.22.0"><span class="caption">v1.22.0</span></a></li>
+          <li><a href="#v1.21.0.2"><span class="caption">v1.21.0.2</span></a></li>
+          <li><a href="#v1.21.0.1"><span class="caption">v1.21.0.1</span></a></li>
+          <li><a href="#v1.21.0"><span class="caption">v1.21.0</span></a></li>
+          <li><a href="#v1.20.1.1"><span class="caption">v1.20.1.1</span></a></li>
+          <li><a href="#v1.20.1"><span class="caption">v1.20.1</span></a></li>
+          <li><a href="#v1.20.0.8"><span class="caption">v1.20.0.8</span></a></li>
+          <li><a href="#v1.20.0.7"><span class="caption">v1.20.0.7</span></a></li>
+          <li><a href="#v1.20.0.6"><span class="caption">v1.20.0.6</span></a></li>
+          <li><a href="#v1.20.0.5"><span class="caption">v1.20.0.5</span></a></li>
+          <li><a href="#v1.20.0.4"><span class="caption">v1.20.0.4</span></a></li>
+          <li><a href="#v1.20.0.3"><span class="caption">v1.20.0.3</span></a></li>
+          <li><a href="#v1.20.0.2"><span class="caption">v1.20.0.2</span></a></li>
+          <li><a href="#v1.20.0.1"><span class="caption">v1.20.0.1</span></a></li>
+          <li><a href="#v1.20.0"><span class="caption">v1.20.0</span></a></li>
+          <li><a href="#v1.19.2.3"><span class="caption">v1.19.2.3</span></a></li>
+          <li><a href="#v1.19.2.2"><span class="caption">v1.19.2.2</span></a></li>
+          <li><a href="#v1.19.2.1"><span class="caption">v1.19.2.1</span></a></li>
+          <li><a href="#v1.19.2"><span class="caption">v1.19.2</span></a></li>
+          <li><a href="#v1.19.1.4"><span class="caption">v1.19.1.4</span></a></li>
+          <li><a href="#v1.19.1.3"><span class="caption">v1.19.1.3</span></a></li>
+          <li><a href="#v1.19.1.2"><span class="caption">v1.19.1.2</span></a></li>
+          <li><a href="#v1.19.1.1"><span class="caption">v1.19.1.1</span></a></li>
+          <li><a href="#v1.19.1"><span class="caption">v1.19.1</span></a></li>
+          <li><a href="#v1.19.0.1"><span class="caption">v1.19.0.1</span></a></li>
+          <li><a href="#v1.19.0"><span class="caption">v1.19.0</span></a></li>
+          <li><a href="#v1.18.0"><span class="caption">v1.18.0</span></a></li>
+          <li><a href="#v1.17.0"><span class="caption">v1.17.0</span></a></li>
+          <li><a href="#v1.16.0.6"><span class="caption">v1.16.0.6</span></a></li>
+          <li><a href="#v1.16.0.5"><span class="caption">v1.16.0.5</span></a></li>
+          <li><a href="#v1.16.0.4"><span class="caption">v1.16.0.4</span></a></li>
+          <li><a href="#v1.16.0.3"><span class="caption">v1.16.0.3</span></a></li>
+          <li><a href="#v1.16.0.2"><span class="caption">v1.16.0.2</span></a></li>
+          <li><a href="#v1.16.0.1"><span class="caption">v1.16.0.1</span></a></li>
+          <li><a href="#v1.16.0"><span class="caption">v1.16.0</span></a></li>
+          <li><a href="#v1.15.0.1"><span class="caption">v1.15.0.1</span></a></li>
+          <li><a href="#v1.15.0"><span class="caption">v1.15.0</span></a></li>
+          <li><a href="#v1.14.0"><span class="caption">v1.14.0</span></a></li>
+          <li><a href="#v1.13.2.2"><span class="caption">v1.13.2.2</span></a></li>
+          <li><a href="#v1.13.2.1"><span class="caption">v1.13.2.1</span></a></li>
+          <li><a href="#v1.13.2"><span class="caption">v1.13.2</span></a></li>
+          <li><a href="#v1.13.1"><span class="caption">v1.13.1</span></a></li>
+          <li><a href="#v1.13.0.2"><span class="caption">v1.13.0.2</span></a></li>
+          <li><a href="#v1.13.0.1"><span class="caption">v1.13.0.1</span></a></li>
+          <li><a href="#v1.13.0"><span class="caption">v1.13.0</span></a></li>
+          <li><a href="#v1.12.0"><span class="caption">v1.12.0</span></a></li>
+          <li><a href="#v1.11.0"><span class="caption">v1.11.0</span></a></li>
+          <li><a href="#v1.10.0.2"><span class="caption">v1.10.0.2</span></a></li>
+          <li><a href="#v1.10.0.1"><span class="caption">v1.10.0.1</span></a></li>
+          <li><a href="#v1.10.0"><span class="caption">v1.10.0</span></a></li>
+          <li><a href="#v1.9.0.2"><span class="caption">v1.9.0.2</span></a></li>
+          <li><a href="#v1.9.0.1"><span class="caption">v1.9.0.1</span></a></li>
+          <li><a href="#v1.9.0"><span class="caption">v1.9.0</span></a></li>
+          <li><a href="#v1.8.0.4"><span class="caption">v1.8.0.4</span></a></li>
+          <li><a href="#v1.8.0.3"><span class="caption">v1.8.0.3</span></a></li>
+          <li><a href="#v1.8.0.2"><span class="caption">v1.8.0.2</span></a></li>
+          <li><a href="#v1.8.0.1"><span class="caption">v1.8.0.1</span></a></li>
+          <li><a href="#v1.8.0"><span class="caption">v1.8.0</span></a></li>
+          <li><a href="#v1.7.0.1"><span class="caption">v1.7.0.1</span></a></li>
+          <li><a href="#v1.7.0"><span class="caption">v1.7.0</span></a></li>
+          <li><a href="#v1.6.1"><span class="caption">v1.6.1</span></a></li>
+          <li><a href="#v1.6.0"><span class="caption">v1.6.0</span></a></li>
+          <li><a href="#v1.5.0"><span class="caption">v1.5.0</span></a></li>
+          <li><a href="#v1.4.0"><span class="caption">v1.4.0</span></a></li>
+          <li><a href="#v1.3.0.2"><span class="caption">v1.3.0.2</span></a></li>
+          <li><a href="#v1.3.0.1"><span class="caption">v1.3.0.1</span></a></li>
+          <li><a href="#v1.3.0"><span class="caption">v1.3.0</span></a></li>
+          <li><a href="#v1.2.5.1"><span class="caption">v1.2.5.1</span></a></li>
+          <li><a href="#v1.2.5"><span class="caption">v1.2.5</span></a></li>
+          <li><a href="#v1.2.4"><span class="caption">v1.2.4</span></a></li>
+          <li><a href="#v1.2.3"><span class="caption">v1.2.3</span></a></li>
+          <li><a href="#v1.2.2.1"><span class="caption">v1.2.2.1</span></a></li>
+          <li><a href="#v1.2.2"><span class="caption">v1.2.2</span></a></li>
+          <li><a href="#v1.2.1"><span class="caption">v1.2.1</span></a></li>
+          <li><a href="#v1.2.0.5"><span class="caption">v1.2.0.5</span></a></li>
+          <li><a href="#v1.2.0.4"><span class="caption">v1.2.0.4</span></a></li>
+          <li><a href="#v1.2.0.3"><span class="caption">v1.2.0.3</span></a></li>
+          <li><a href="#v1.2.0.2"><span class="caption">v1.2.0.2</span></a></li>
+          <li><a href="#v1.2.0.1"><span class="caption">v1.2.0.1</span></a></li>
+          <li><a href="#v1.2.0"><span class="caption">v1.2.0</span></a></li>
+          <li><a href="#v1.1.1.1"><span class="caption">v1.1.1.1</span></a></li>
+          <li><a href="#v1.1.1"><span class="caption">v1.1.1</span></a></li>
+          <li><a href="#v1.1.0"><span class="caption">v1.1.0</span></a></li>
+          <li><a href="#v1.0.0.8"><span class="caption">v1.0.0.8</span></a></li>
+          <li><a href="#v1.0.0.7"><span class="caption">v1.0.0.7</span></a></li>
+          <li><a href="#v1.0.0.6"><span class="caption">v1.0.0.6</span></a></li>
+          <li><a href="#v1.0.0.5"><span class="caption">v1.0.0.5</span></a></li>
+          <li><a href="#v1.0.0.4"><span class="caption">v1.0.0.4</span></a></li>
+          <li><a href="#v1.0.0.3"><span class="caption">v1.0.0.3</span></a></li>
+          <li><a href="#v1.0.0.2"><span class="caption">v1.0.0.2</span></a></li>
+          <li><a href="#v1.0.0.1"><span class="caption">v1.0.0.1</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel active" id="changelog-panel-v2" role="tabpanel">
+    <div class="container-sections">
+      <section class="panel panel--padded">
+        <h3>Build Snapshot</h3>
+        <div class="container-actions">
+          <span class="chip color-pair-ink">Version v2.3.2.2</span>
+          <span class="chip color-pair-stone">184 commits</span>
+        </div>
       </section>
       <section class="panel panel--padded" id="breaking-changes-v2">
-        <h3>Breaking changes</h3>
+        <h4>Breaking Changes</h4>
         <ul class="list">
-          <li>
+          <li id="v2.0.0">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-rose">Breaking changes</span>
+              <span class="chip color-pair-rose">Breaking Changes</span>
                 <span class="caption">v2.0.0 - 
 531996 - 2026-07-14</span>
               </div>
-              <h4>Refactor(site)!: remove KnitStitch app from CraftCMS</h4>
+              <h5>Refactor(site)!: remove KnitStitch app from CraftCMS</h5>
               <ul>
                 <li>delete web/knitstitch source, KnitStitch.Tests, templates/knitstitch.twig, web/dist</li>
                 <li>remove KnitStitch CSS section from site.css</li>
@@ -49,16 +272,16 @@
         </ul>
       </section>
       <section class="panel panel--padded" id="feature-changes-v2">
-        <h3>Features</h3>
+        <h4>Features</h4>
         <ul class="list">
-          <li>
+          <li id="v2.3.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v2.3.0 - 
 b9969f - 2026-07-16</span>
               </div>
-              <h4>Add v1/v2 tabbed interface for change log</h4>
+              <h5>Add v1/v2 tabbed interface for change log</h5>
               <ul>
                 <li>split GenerateBuildInfo twig output by major version into tab panels</li>
                 <li>add changelog tab CSS styles</li>
@@ -68,14 +291,14 @@ b9969f - 2026-07-16</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v2.2.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v2.2.0 - 
 9a526c - 2026-07-16</span>
               </div>
-              <h4>Add sticky global bar and fix sticky sidebar offsets</h4>
+              <h5>Add sticky global bar and fix sticky sidebar offsets</h5>
               <ul>
                 <li>include global-bar.twig in base layout</li>
                 <li>fix sticky top values from 96px to 109px to match header height</li>
@@ -84,14 +307,14 @@ b9969f - 2026-07-16</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v2.1.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v2.1.0 - 
 9fbe8b - 2026-07-16</span>
               </div>
-              <h4>Rebrand colours from brown/gold to khaki/muted green</h4>
+              <h5>Rebrand colours from brown/gold to khaki/muted green</h5>
               <ul>
                 <li>update primary, secondary, tertiary, shadow design tokens in site.css</li>
                 <li>rename colour pair label from Muted Gold to Muted Khaki in config and style guide</li>
@@ -102,90 +325,134 @@ b9969f - 2026-07-16</span>
         </ul>
       </section>
       <section class="panel panel--padded" id="fix-changes-v2">
-        <h3>Fixes</h3>
+        <h4>Fixes</h4>
         <ul class="list">
-          <li>
+          <li id="v2.3.2">
+            <div class="container-content">
+              <div class="container-actions">
+              <span class="chip color-pair-sage">Fixes</span>
+                <span class="caption">v2.3.2 - 
+f7894c - 2026-07-16</span>
+              </div>
+              <h5>Remove literal \n and render v2 as first tab</h5>
+              <ul>
+                <li>fix single-quoted &#039;\n&#039; in tabpanel opening that printed literal text</li>
+                <li>reverse major version order so newest (v2) is the first tab</li>
+                <li>regenerate change-log.twig</li>
+              </ul>
+            </div>
+          </li>
+          <li id="v2.3.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v2.3.1 - 
 d14b16 - 2026-07-16</span>
               </div>
-              <h4>Rename global bar label from Miss Sponto to Structured Chaos</h4>
+              <h5>Rename global bar label from Miss Sponto to Structured Chaos</h5>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="panel panel--padded" id="refactor-changes-v2">
+        <h4>Refactors</h4>
+        <ul class="list">
+          <li id="v2.3.2.1">
+            <div class="container-content">
+              <div class="container-actions">
+              <span class="chip color-pair-stone">Refactors</span>
+                <span class="caption">v2.3.2.1 - 
+c67fd6 - 2026-07-16</span>
+              </div>
+              <h5>Render footer version server-side from twig partial</h5>
+              <ul>
+                <li>add twiginfo format to GenerateBuildInfo for a small build-info.twig partial</li>
+                <li>switch composer build-info to generate the partial instead of buildInfo.js</li>
+                <li>render footer version via server-side include, drop cached JS script</li>
+                <li>remove web/js/buildInfo.js</li>
+                <li>update AGENTS.md and git-rules.md</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="panel panel--padded" id="test-changes-v2">
+        <h4>Tests</h4>
+        <ul class="list">
+          <li id="v2.3.2.2">
+            <div class="container-content">
+              <div class="container-actions">
+              <span class="chip color-pair-plum">Tests</span>
+                <span class="caption">v2.3.2.2 - 
+cf0f30 - 2026-07-16</span>
+              </div>
+              <h5>Align unit tests with versioned changelog IDs and current field config</h5>
+              <ul>
+                <li>expect feature-changes-vN section IDs in changelog test</li>
+                <li>update colour pair labels to match current dropdown options</li>
+                <li>expect container-section--headed instead of panel--sticky in sidebar partial</li>
+              </ul>
             </div>
           </li>
         </ul>
       </section>
       <section class="panel panel--padded" id="chore-changes-v2">
-        <h3>Maintenance</h3>
+        <h4>Maintenance</h4>
         <ul class="list">
-          <li>
+          <li id="v2.3.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v2.3.1.1 - 
 c91005 - 2026-07-16</span>
               </div>
-              <h4>Remove KnitStitch folders from workspace config</h4>
+              <h5>Remove KnitStitch folders from workspace config</h5>
             </div>
           </li>
         </ul>
       </section>
     </div>
   </div>
-  <div class="changelog-tabpanel" id="changelog-panel-v1" role="tabpanel">
+  <div class="tab-panel" id="changelog-panel-v1" role="tabpanel">
     <div class="container-sections">
       <section class="panel panel--padded">
-        <h2>Build Snapshot</h2>
+        <h3>Build Snapshot</h3>
         <div class="container-actions">
-          <span class="chip color-pair-ink">Version v2.3.1.1</span>
-          <span class="chip color-pair-stone">181 commits</span>
+          <span class="chip color-pair-ink">Version v2.3.2.2</span>
+          <span class="chip color-pair-stone">184 commits</span>
         </div>
-        <p class="body">Generated from conventional commits and git tags during the site build.</p>
-      </section>
-      <section class="panel panel--padded">
-        <h2>Change Types</h2>
-        <nav class="container-actions" aria-label="Change log sections">
-          <a class="chip color-pair-gold" href="#feature-changes-v1">Features</a>
-          <a class="chip color-pair-sage" href="#fix-changes-v1">Fixes</a>
-          <a class="chip color-pair-sky" href="#docs-changes-v1">Documentation</a>
-          <a class="chip color-pair-stone" href="#refactor-changes-v1">Refactors</a>
-          <a class="chip color-pair-plum" href="#test-changes-v1">Tests</a>
-          <a class="chip color-pair-olive" href="#chore-changes-v1">Maintenance</a>
-          <a class="chip color-pair-ink" href="#other-changes-v1">Other changes</a>
-        </nav>
       </section>
       <section class="panel panel--padded" id="feature-changes-v1">
-        <h3>Features</h3>
+        <h4>Features</h4>
         <ul class="list">
-          <li>
+          <li id="v1.38.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.38.0 - 
 466299 - 2026-07-12</span>
               </div>
-              <h4>Add line dragging, copy-objects button, and line-line midpoint constraint</h4>
+              <h5>Add line dragging, copy-objects button, and line-line midpoint constraint</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.37.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.37.0 - 
 01db18 - 2026-07-11</span>
               </div>
-              <h4>Add DOF analyzer and constraint feasibility checks</h4>
+              <h5>Add DOF analyzer and constraint feasibility checks</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.36.0 - 
 64f159 - 2026-07-11</span>
               </div>
-              <h4>Add origin anchor marker and crosshair rendering</h4>
+              <h5>Add origin anchor marker and crosshair rendering</h5>
               <ul>
                 <li>Add isOrigin flag to SketchPoint and preserve the origin anchor on cleanup.</li>
                 <li>Set isOrigin on the default origin anchor created by ensureOriginAnchor.</li>
@@ -193,14 +460,14 @@ c91005 - 2026-07-16</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.35.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.35.0 - 
 054e64 - 2026-07-09</span>
               </div>
-              <h4>Add overconstraint checker and surface issues in sidebar</h4>
+              <h5>Add overconstraint checker and surface issues in sidebar</h5>
               <ul>
                 <li>detect redundant lengths, duplicate dimensions, and over-constrained points</li>
                 <li>show overconstraint warnings in the sketch sidebar</li>
@@ -208,14 +475,14 @@ c91005 - 2026-07-16</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.34.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.34.0 - 
 81b781 - 2026-07-09</span>
               </div>
-              <h4>Add horizontal/vertical constraints and point listing</h4>
+              <h5>Add horizontal/vertical constraints and point listing</h5>
               <ul>
                 <li>add Horizontal and Vertical constraint types with local enforcement and global solver error terms</li>
                 <li>add constraint creation workflow, icons, and toolbar buttons</li>
@@ -224,14 +491,14 @@ c91005 - 2026-07-16</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.33.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.33.0 - 
 fa4e62 - 2026-07-09</span>
               </div>
-              <h4>Add construction line support</h4>
+              <h5>Add construction line support</h5>
               <ul>
                 <li>add isConstruction flag to SketchLine</li>
                 <li>render construction lines as dashed in the sketch layer</li>
@@ -242,14 +509,14 @@ fa4e62 - 2026-07-09</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.32.0 - 
 9b1222 - 2026-07-06</span>
               </div>
-              <h4>Add sock template constraints and mirrored dimensions</h4>
+              <h5>Add sock template constraints and mirrored dimensions</h5>
               <ul>
                 <li>add right-edge mirrored dimensions to sock template</li>
                 <li>add aligned dimensions for left-side notch points</li>
@@ -259,14 +526,14 @@ fa4e62 - 2026-07-09</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.31.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.31.0 - 
 fbe142 - 2026-07-06</span>
               </div>
-              <h4>Add global constraint solver with gradient descent</h4>
+              <h5>Add global constraint solver with gradient descent</h5>
               <ul>
                 <li>add GlobalConstraintSolver: minimizes total constraint error via gradient descent</li>
                 <li>error functions for perpendicular (dot product), coincident (distance), midpoint, equal length</li>
@@ -278,14 +545,14 @@ fbe142 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.30.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.30.0 - 
 25b64f - 2026-07-06</span>
               </div>
-              <h4>Add anchor points and fill tool</h4>
+              <h5>Add anchor points and fill tool</h5>
               <ul>
                 <li>add Anchor and Fill tools to SketchTool constants</li>
                 <li>add isAnchor flag to SketchPoint model with persistence and snapshot support</li>
@@ -299,14 +566,14 @@ fbe142 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.29.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.29.0 - 
 2b815d - 2026-07-06</span>
               </div>
-              <h4>Replace fixed grid with infinite viewport-culled grid</h4>
+              <h5>Replace fixed grid with infinite viewport-culled grid</h5>
               <ul>
                 <li>remove gridColumns/gridRows from store; grid is now infinite</li>
                 <li>replace previewCells array with sparse filledCells Set of r,c keys</li>
@@ -323,14 +590,14 @@ fbe142 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.28.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.28.0 - 
 fe41b2 - 2026-07-06</span>
               </div>
-              <h4>Add colour triplets with per-colour selection highlight</h4>
+              <h5>Add colour triplets with per-colour selection highlight</h5>
               <ul>
                 <li>redefine SketchColorOption as triplet { stroke, fill, select }</li>
                 <li>add Gold triplet matching site primary colours as default</li>
@@ -340,14 +607,14 @@ fe41b2 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.27.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.27.0 - 
 3c78ce - 2026-07-06</span>
               </div>
-              <h4>Add measurement-driven sock template and dimension display values</h4>
+              <h5>Add measurement-driven sock template and dimension display values</h5>
               <ul>
                 <li>add sockMeasurements.js with gauge + body measurement → stitch/row count conversion</li>
                 <li>redefine sock template to build outline from real measurements instead of normalized coords</li>
@@ -359,14 +626,14 @@ fe41b2 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.26.0 - 
 e64153 - 2026-07-06</span>
               </div>
-              <h4>Add closed shape fill, dimension renderer, and constraint icons</h4>
+              <h5>Add closed shape fill, dimension renderer, and constraint icons</h5>
               <ul>
                 <li>detect closed loops in sketch lines and fill grid cells 50%+ inside</li>
                 <li>render dimension lines and labels on the sketch canvas</li>
@@ -380,44 +647,44 @@ e64153 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.25.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.25.0 - 
 50066b - 2026-06-29</span>
               </div>
-              <h4>Add equal length constraint creation, solver, and rendering</h4>
+              <h5>Add equal length constraint creation, solver, and rendering</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.24.0 - 
 b45351 - 2026-06-29</span>
               </div>
-              <h4>Add midpoint constraint creation, solver, and rendering</h4>
+              <h5>Add midpoint constraint creation, solver, and rendering</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.23.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.23.0 - 
 27db3b - 2026-06-29</span>
               </div>
-              <h4>Extract sketch tools and add action-based undo history</h4>
+              <h5>Extract sketch tools and add action-based undo history</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.22.0 - 
 66563b - 2026-06-27</span>
               </div>
-              <h4>Restructure with panel inception and sticky sidebar</h4>
+              <h5>Restructure with panel inception and sticky sidebar</h5>
               <ul>
                 <li>use shared page subheader and two-column page-layout</li>
                 <li>group sections into .card.card--padded inside a .panel</li>
@@ -427,14 +694,14 @@ b45351 - 2026-06-29</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.21.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.21.0 - 
 1e4afe - 2026-06-27</span>
               </div>
-              <h4>Add instructions matrix field hierarchy</h4>
+              <h5>Add instructions matrix field hierarchy</h5>
               <ul>
                 <li>add instructionSection, instructionStep, and instructionStepTextBlock entry types</li>
                 <li>add fields for section heading/subheading/text, step heading, step texts, and text images</li>
@@ -443,14 +710,14 @@ b45351 - 2026-06-29</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.20.0 - 
 67f03b - 2026-06-26</span>
               </div>
-              <h4>Add WordPress content migration scripts</h4>
+              <h5>Add WordPress content migration scripts</h5>
               <ul>
                 <li>Add import_post_content.php to extract post body and resource links from WordPress DB</li>
                 <li>Add list_posts.php to audit Craft entry field completeness</li>
@@ -459,40 +726,40 @@ b45351 - 2026-06-29</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.19.0 - 
 7f75ee - 2026-06-22</span>
               </div>
-              <h4>Add changeLogPage section, entry type, and template</h4>
+              <h5>Add changeLogPage section, entry type, and template</h5>
               <ul>
                 <li>Add a new Single section (changeLogPage) and matching entry type to project config. The template includes the generated _generated/change-log.twig fragment produced by the build step, so the rendered page reflects the current git history without any runtime Craft queries.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.18.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.18.0 - 
 5f11e6 - 2026-06-22</span>
               </div>
-              <h4>Add twig changelog output format to GenerateBuildInfo</h4>
+              <h5>Add twig changelog output format to GenerateBuildInfo</h5>
               <ul>
                 <li>Parse conventional commit bodies alongside subjects to extract per-commit descriptions. Group commits by type (breaking, feature, fix, docs, refactor, test, chore, other) and render a static Twig fragment with chips, headings, and optional description paragraphs. Add --format=twig to the build-info composer script and a dedicated build-changelog alias.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.17.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.17.0 - 
 28deae - 2026-06-22</span>
               </div>
-              <h4>Add reusable colour pairs to archive cards</h4>
+              <h5>Add reusable colour pairs to archive cards</h5>
               <ul>
                 <li>add the reusable colourPair term field to all category groups</li>
                 <li>switch archive cards and filters to colour-pair utility classes</li>
@@ -500,53 +767,53 @@ b45351 - 2026-06-29</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.16.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.16.0 - 
 988178 - 2026-06-22</span>
               </div>
-              <h4>Add the page directory selector field</h4>
+              <h5>Add the page directory selector field</h5>
               <ul>
                 <li>Add the Craft dropdown field used by the markdown page entry type so the page can be routed through the admin panel without hardcoding the directory choice in templates.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.15.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.15.0 - 
 2fa695 - 2026-06-22</span>
               </div>
-              <h4>Add admin-managed header submenus</h4>
+              <h5>Add admin-managed header submenus</h5>
               <ul>
                 <li>Convert the site navigation field to a nested Matrix setup so each top-level header item can carry submenu links from the control panel and render them in the shared header partial.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.14.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.14.0 - 
 b79034 - 2026-06-22</span>
               </div>
-              <h4>Add a reusable markdown page entry type</h4>
+              <h5>Add a reusable markdown page entry type</h5>
               <ul>
                 <li>Add a single-editable Craft page with a title plus markdown source URL, a shared template that renders remote GitHub markdown, and the small module/twig helper needed to fetch and normalize the content.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.13.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.13.0 - 
 34ea18 - 2026-06-21</span>
               </div>
-              <h4>Add GitHub webhook auto-deploy listener</h4>
+              <h5>Add GitHub webhook auto-deploy listener</h5>
               <ul>
                 <li>Add web/webhook.php with HMAC-SHA256 signature verification</li>
                 <li>VPS pulls from GitHub on push to master (VPS-initiated, not push)</li>
@@ -555,14 +822,14 @@ b79034 - 2026-06-22</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.12.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.12.0 - 
 5f6f3d - 2026-06-21</span>
               </div>
-              <h4>Display build version in site footer</h4>
+              <h5>Display build version in site footer</h5>
               <ul>
                 <li>Add version display element to footer bottom-right</li>
                 <li>Load web/js/buildInfo.js and populate version + commit hash</li>
@@ -570,14 +837,14 @@ b79034 - 2026-06-22</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.11.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.11.0 - 
 619427 - 2026-06-21</span>
               </div>
-              <h4>Add cross-platform build info version generator</h4>
+              <h5>Add cross-platform build info version generator</h5>
               <ul>
                 <li>Add GenerateBuildInfo.php (PHP, cross-platform) as canonical generator</li>
                 <li>Add GenerateBuildInfo.ps1 (PowerShell, Windows) as alternative</li>
@@ -589,177 +856,177 @@ b79034 - 2026-06-22</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.10.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.10.0 - 
 7cfb51 - 2026-06-21</span>
               </div>
-              <h4>Enforce perpendicular line constraints</h4>
+              <h5>Enforce perpendicular line constraints</h5>
               <ul>
                 <li>Apply perpendicular constraints from two selected lines, move geometry into a valid state on creation, and reject impossible combinations. Include canvas interaction updates, regression tests, and rebuilt browser assets.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.9.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.9.0 - 
 e9a1fd - 2026-06-21</span>
               </div>
-              <h4>Improve sketch selection and constraints</h4>
+              <h5>Improve sketch selection and constraints</h5>
               <ul>
                 <li>Make dimension labels and object-list rows selectable for deletion, add point and line selection fixes, and implement perpendicular constraints with canvas markers and solver support.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.8.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.8.0 - 
 c6f59a - 2026-06-14</span>
               </div>
-              <h4>Wire knitstitch bootstrap</h4>
+              <h5>Wire knitstitch bootstrap</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.7.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.7.0 - 
 3d1c7e - 2026-06-14</span>
               </div>
-              <h4>Rebuild knitstitch editor</h4>
+              <h5>Rebuild knitstitch editor</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.6.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.6.0 - 
 ab351f - 2026-06-14</span>
               </div>
-              <h4>Add project links to shared header</h4>
+              <h5>Add project links to shared header</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.5.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.5.0 - 
 9b13b9 - 2026-06-13</span>
               </div>
-              <h4>Integrate knitstitch into craftcms</h4>
+              <h5>Integrate knitstitch into craftcms</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.4.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.4.0 - 
 fc0a03 - 2026-06-13</span>
               </div>
-              <h4>Add knitstitch web app scaffold</h4>
+              <h5>Add knitstitch web app scaffold</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.3.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.3.0 - 
 1dcd3e - 2026-06-07</span>
               </div>
-              <h4>Track uploads folder</h4>
+              <h5>Track uploads folder</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.2.0 - 
 81ad34 - 2026-06-07</span>
               </div>
-              <h4>Add site header, category, and tag templates</h4>
+              <h5>Add site header, category, and tag templates</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.1.0">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-gold">Features</span>
                 <span class="caption">v1.1.0 - 
 3f0c49 - 2026-06-07</span>
               </div>
-              <h4>Add project configuration for home cards, projects archive, and taxonomies</h4>
+              <h5>Add project configuration for home cards, projects archive, and taxonomies</h5>
             </div>
           </li>
         </ul>
       </section>
       <section class="panel panel--padded" id="fix-changes-v1">
-        <h3>Fixes</h3>
+        <h4>Fixes</h4>
         <ul class="list">
-          <li>
+          <li id="v1.37.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.37.1 - 
 3a00c1 - 2026-07-11</span>
               </div>
-              <h4>Merge wrapped bullet continuation lines in changelog</h4>
+              <h5>Merge wrapped bullet continuation lines in changelog</h5>
               <ul>
                 <li>update GenerateBuildInfo.php to append indented body lines to the previous bullet</li>
                 <li>regenerate templates/_generated/change-log.twig</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.36.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.36.1 - 
 9f5ff5 - 2026-07-11</span>
               </div>
-              <h4>Prevent dragging anchor points</h4>
+              <h5>Prevent dragging anchor points</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.35.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.35.2 - 
 779013 - 2026-07-09</span>
               </div>
-              <h4>Defer horizontal/vertical dimension kind changes until mouse-up</h4>
+              <h5>Defer horizontal/vertical dimension kind changes until mouse-up</h5>
               <ul>
                 <li>preserve dimension kind while dragging so lines do not lock mid-drag</li>
                 <li>recompute kind and re-solve once the point is released</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.35.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.35.1 - 
 98ded7 - 2026-07-09</span>
               </div>
-              <h4>Keep dragged points driving isolated dimensions</h4>
+              <h5>Keep dragged points driving isolated dimensions</h5>
               <ul>
                 <li>include dragged points as propagation roots in the hard constraint propagator</li>
                 <li>ensure dimensions that are not reachable from the origin anchor still lock</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.32.2 - 
 47d998 - 2026-07-09</span>
               </div>
-              <h4>Anchor sock template to origin and preserve anchor on clear</h4>
+              <h5>Anchor sock template to origin and preserve anchor on clear</h5>
               <ul>
                 <li>offset template points so the reference point sits at (0, 0)</li>
                 <li>create an origin anchor and coincident constraint on template apply</li>
@@ -769,14 +1036,14 @@ fc0a03 - 2026-06-13</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.32.1 - 
 9b0526 - 2026-07-09</span>
               </div>
-              <h4>Add nvm-installed node binaries to webhook PATH</h4>
+              <h5>Add nvm-installed node binaries to webhook PATH</h5>
               <ul>
                 <li>scan ~/.nvm/versions/node/*/bin and add to PATH for PHP exec()</li>
                 <li>allows npm ci &amp;&amp; npm run build to work when Node.js is installed via nvm</li>
@@ -784,14 +1051,14 @@ fc0a03 - 2026-06-13</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.29.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.29.1 - 
 0b853f - 2026-07-06</span>
               </div>
-              <h4>Support negative coordinates in cell fill algorithm</h4>
+              <h5>Support negative coordinates in cell fill algorithm</h5>
               <ul>
                 <li>remove Math.max(0, ...) clamping from closedShapeFill bounding box calculation</li>
                 <li>allows cell fill processing when shapes extend into negative coordinates</li>
@@ -799,91 +1066,91 @@ fc0a03 - 2026-06-13</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.23.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.23.1 - 
 897370 - 2026-06-29</span>
               </div>
-              <h4>Reject over-constrained perpendicular triangles and show cursor error</h4>
+              <h5>Reject over-constrained perpendicular triangles and show cursor error</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.22.1 - 
 fbcad8 - 2026-06-27</span>
               </div>
-              <h4>Use git fetch + reset --hard for webhook deploys</h4>
+              <h5>Use git fetch + reset --hard for webhook deploys</h5>
               <ul>
                 <li>Replace checkout + pull with fetch + reset --hard so the VPS always force-syncs to the remote and can never fail on local file drift.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.20.1 - 
 e19766 - 2026-06-26</span>
               </div>
-              <h4>Reset all tracked files before git pull</h4>
+              <h5>Reset all tracked files before git pull</h5>
               <ul>
                 <li>Use git checkout -- . instead of listing specific generated files</li>
                 <li>Prevents pull conflicts when VPS has local changes to any tracked file</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.19.2 - 
 fed78a - 2026-06-22</span>
               </div>
-              <h4>Reset generated buildInfo.js before git pull</h4>
+              <h5>Reset generated buildInfo.js before git pull</h5>
               <ul>
                 <li>composer post-install-cmd regenerates web/js/buildInfo.js on the VPS, leaving it as a local modification that blocks the next pull. Prepend a git checkout to discard it cleanly before merging.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.19.1 - 
 7ea7e0 - 2026-06-22</span>
               </div>
-              <h4>Vertically align panel-actions items</h4>
+              <h5>Vertically align panel-actions items</h5>
               <ul>
                 <li>Add align-items: center to .panel-actions so chips and captions sitting side-by-side in a flex row baseline correctly instead of top-aligning.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.13.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.13.2 - 
 daa1f7 - 2026-06-21</span>
               </div>
-              <h4>Use shared site-footer partial on all pages</h4>
+              <h5>Use shared site-footer partial on all pages</h5>
               <ul>
                 <li>Replace inline footer markup with  include &#039;_partials/site-footer.twig&#039;  in index.twig, category.twig, and tag.twig</li>
                 <li>Ensures version display and buildInfo.js load consistently across all pages</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.13.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.13.1 - 
 d150f4 - 2026-06-21</span>
               </div>
-              <h4>Resolve git binary path for VPS where git is not in PHP&#039;s PATH</h4>
+              <h5>Resolve git binary path for VPS where git is not in PHP&#039;s PATH</h5>
               <ul>
                 <li>Add findGit() to locate git binary in common paths</li>
                 <li>Add PATH export in webhook.php for exec() calls</li>
@@ -891,109 +1158,109 @@ d150f4 - 2026-06-21</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.6.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.6.1 - 
 749d98 - 2026-06-14</span>
               </div>
-              <h4>Align homepage header overrides</h4>
+              <h5>Align homepage header overrides</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.5">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.2.5 - 
 6c760d - 2026-06-07</span>
               </div>
-              <h4>Add asset folder fix script to deployment workflow</h4>
+              <h5>Add asset folder fix script to deployment workflow</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.2.4 - 
 04fe73 - 2026-06-07</span>
               </div>
-              <h4>Temporarily enable admin changes during deployment</h4>
+              <h5>Temporarily enable admin changes during deployment</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.2.3 - 
 d129c5 - 2026-06-07</span>
               </div>
-              <h4>Disable read-only mode and add content creation scripts to deployment</h4>
+              <h5>Disable read-only mode and add content creation scripts to deployment</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.2.2 - 
 a62e24 - 2026-06-07</span>
               </div>
-              <h4>Add content creation scripts to deployment workflow</h4>
+              <h5>Add content creation scripts to deployment workflow</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.2.1 - 
 62c14e - 2026-06-07</span>
               </div>
-              <h4>Add project config sync to deployment workflow</h4>
+              <h5>Add project config sync to deployment workflow</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sage">Fixes</span>
                 <span class="caption">v1.1.1 - 
 dbf912 - 2026-06-07</span>
               </div>
-              <h4>Update post entry type and featured image field configuration</h4>
+              <h5>Update post entry type and featured image field configuration</h5>
             </div>
           </li>
         </ul>
       </section>
       <section class="panel panel--padded" id="docs-changes-v1">
-        <h3>Documentation</h3>
+        <h4>Documentation</h4>
         <ul class="list">
-          <li>
+          <li id="v1.38.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.38.0.3 - 
 4a6256 - 2026-07-12</span>
               </div>
-              <h4>Add do-not-commit-before-asked rule to git guide</h4>
+              <h5>Add do-not-commit-before-asked rule to git guide</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.38.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.38.0.2 - 
 240526 - 2026-07-12</span>
               </div>
-              <h4>Update roadmap, tests-map, and architecture for midpoint and refactor</h4>
+              <h5>Update roadmap, tests-map, and architecture for midpoint and refactor</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0.6">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.36.0.6 - 
 89da37 - 2026-07-11</span>
               </div>
-              <h4>Update docs for mainUi.js panel controller refactor</h4>
+              <h5>Update docs for mainUi.js panel controller refactor</h5>
               <ul>
                 <li>mark &quot;Split mainUi.js into focused panel controllers&quot; as complete in roadmap.md</li>
                 <li>update agents/roadmap.md status table and replace the mainUi refactor plan with a completed summary table</li>
@@ -1002,14 +1269,14 @@ dbf912 - 2026-06-07</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.36.0.4 - 
 899166 - 2026-07-11</span>
               </div>
-              <h4>Split docs into human and agent-level versions</h4>
+              <h5>Split docs into human and agent-level versions</h5>
               <ul>
                 <li>move roadmap-agent.md to docs/agents/roadmap.md</li>
                 <li>rewrite architecture.md as a surface-level overview (what calls what, click flow diagram, no solver math)</li>
@@ -1023,14 +1290,14 @@ dbf912 - 2026-06-07</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.34.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.34.0.2 - 
 1b7863 - 2026-07-09</span>
               </div>
-              <h4>Update roadmap, architecture, and project map</h4>
+              <h5>Update roadmap, architecture, and project map</h5>
               <ul>
                 <li>convert roadmap to table-based format with agent-detail companion</li>
                 <li>add architecture doc covering constraint types, solver, and selection sync</li>
@@ -1039,24 +1306,24 @@ dbf912 - 2026-06-07</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.32.1.1 - 
 f12709 - 2026-07-09</span>
               </div>
-              <h4>Convert to table-based format and expand refactor plans</h4>
+              <h5>Convert to table-based format and expand refactor plans</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.32.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.32.0.4 - 
 47547d - 2026-07-06</span>
               </div>
-              <h4>Update project map, agents, and roadmap</h4>
+              <h5>Update project map, agents, and roadmap</h5>
               <ul>
                 <li>update AGENTS.md for four-workspace model and e2e-first testing approach</li>
                 <li>rewrite project-map.md with grouped file summaries by role</li>
@@ -1065,14 +1332,14 @@ f12709 - 2026-07-09</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.29.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.29.0.2 - 
 94f750 - 2026-07-06</span>
               </div>
-              <h4>Update project map and agents for infinite grid and colour triplets</h4>
+              <h5>Update project map and agents for infinite grid and colour triplets</h5>
               <ul>
                 <li>update project map file summaries for new grid model, sparse cells, triplets</li>
                 <li>remove stale refactor-plan.md and app.css references</li>
@@ -1082,14 +1349,14 @@ f12709 - 2026-07-09</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.26.0.2 - 
 88f71a - 2026-07-06</span>
               </div>
-              <h4>Update roadmap, project map, tests map, and AGENTS</h4>
+              <h5>Update roadmap, project map, tests map, and AGENTS</h5>
               <ul>
                 <li>add closed shape fill, dimension renderer, constraint icons milestones</li>
                 <li>project-map: add new modules</li>
@@ -1098,87 +1365,87 @@ f12709 - 2026-07-09</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.25.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.25.0.2 - 
 c2ab60 - 2026-06-29</span>
               </div>
-              <h4>Update roadmap and tests map for equal constraint</h4>
+              <h5>Update roadmap and tests map for equal constraint</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.8">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.24.0.8 - 
 7c14ac - 2026-06-29</span>
               </div>
-              <h4>Update project map for styleOptions.js</h4>
+              <h5>Update project map for styleOptions.js</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.6">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.24.0.6 - 
 054a3b - 2026-06-29</span>
               </div>
-              <h4>Update project map for new sketch modules</h4>
+              <h5>Update project map for new sketch modules</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.24.0.3 - 
 8926da - 2026-06-29</span>
               </div>
-              <h4>Fix typo in scope guidance</h4>
+              <h5>Fix typo in scope guidance</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.24.0.2 - 
 ddd183 - 2026-06-29</span>
               </div>
-              <h4>Update roadmap and tests map for midpoint</h4>
+              <h5>Update roadmap and tests map for midpoint</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.23.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.23.1.1 - 
 d9c2dd - 2026-06-29</span>
               </div>
-              <h4>Update project docs and remove empty stubs</h4>
+              <h5>Update project docs and remove empty stubs</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.22.1.1 - 
 690e6d - 2026-06-27</span>
               </div>
-              <h4>Clarify that commit messages should not include Devin attribution footers</h4>
+              <h5>Clarify that commit messages should not include Devin attribution footers</h5>
               <ul>
                 <li>Add a Footers section under Commit Message Format that explicitly forbids non-functional footers such as &quot;Generated with [Devin]&quot; or &quot;Co-Authored-By: Devin ...&quot; and limits functional footers to BREAKING CHANGE and Signed-off-by.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.22.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.22.0.4 - 
 e841e4 - 2026-06-27</span>
               </div>
-              <h4>Update agent notes, css guidelines, and site structure</h4>
+              <h5>Update agent notes, css guidelines, and site structure</h5>
               <ul>
                 <li>trim AGENTS.md to high-level guidance with pointers to targeted docs</li>
                 <li>add git conventions section pointing to docs/git-rules.md</li>
@@ -1190,14 +1457,14 @@ e841e4 - 2026-06-27</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.2.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.19.2.3 - 
 df3c81 - 2026-06-26</span>
               </div>
-              <h4>Add conventional commit rules and versioning guide</h4>
+              <h5>Add conventional commit rules and versioning guide</h5>
               <ul>
                 <li>Document commit format, types, and version impact</li>
                 <li>Include examples and common scopes</li>
@@ -1205,53 +1472,53 @@ df3c81 - 2026-06-26</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.1.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.19.1.4 - 
 887cdf - 2026-06-22</span>
               </div>
-              <h4>Rewrite as human-facing portfolio overview</h4>
+              <h5>Rewrite as human-facing portfolio overview</h5>
               <ul>
                 <li>Replace the agent-rules content with a description of the portfolio and the person behind it. Four creative disciplines are called out (crochet/fibre, sewing, parametric modelling, tools/software) with plain-language summaries. Dev conventions and agent rules remain in AGENTS.md; the README just points there.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.1.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.19.1.2 - 
 0d6db6 - 2026-06-22</span>
               </div>
-              <h4>Document changeLogPage section in site structure</h4>
+              <h5>Document changeLogPage section in site structure</h5>
               <ul>
                 <li>Add the changeLogPage Single to the page inventory and the section table. Document the template path, its purpose, and its dependency on the generated changelog fragment.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.19.1.1 - 
 f17273 - 2026-06-22</span>
               </div>
-              <h4>Add style reuse rules for existing semantic styles</h4>
+              <h5>Add style reuse rules for existing semantic styles</h5>
               <ul>
                 <li>Clarify that new bespoke selectors or inline styles should not be introduced for one-off content blocks when the current default stylesheet already covers the need. Prefer existing semantic element styles and shared CSS classes.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.16.0.6">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.16.0.6 - 
 e9c139 - 2026-06-22</span>
               </div>
-              <h4>Document local ddev php workflow</h4>
+              <h5>Document local ddev php workflow</h5>
               <ul>
                 <li>record the DDEV PHP convention for Craft CLI work in AGENTS.md</li>
                 <li>add a roadmap note that colour pair previews belong in a future module or plugin</li>
@@ -1259,24 +1526,24 @@ e9c139 - 2026-06-22</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.16.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.16.0.3 - 
 ab3998 - 2026-06-22</span>
               </div>
-              <h4>Document site structure and styling rules</h4>
+              <h5>Document site structure and styling rules</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.13.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.13.0.1 - 
 5a1bbe - 2026-06-21</span>
               </div>
-              <h4>Update AGENT.md with build info and deploy documentation</h4>
+              <h5>Update AGENT.md with build info and deploy documentation</h5>
               <ul>
                 <li>Document GenerateBuildInfo.php and .ps1 scripts</li>
                 <li>Document webhook auto-deploy flow and VPS setup</li>
@@ -1284,82 +1551,82 @@ ab3998 - 2026-06-22</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.10.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.10.0.1 - 
 b99b14 - 2026-06-21</span>
               </div>
-              <h4>Separate app and recovery agent guidance</h4>
+              <h5>Separate app and recovery agent guidance</h5>
               <ul>
                 <li>Refocus the root agent file on steady-state Craft CMS structure and behavior, add an app-specific KnitStitch agent file, and move recovery/import history into a dedicated content recovery document.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.8.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.8.0.4 - 
 9315ab - 2026-06-14</span>
               </div>
-              <h4>Remove playwright artifacts and add root readme</h4>
+              <h5>Remove playwright artifacts and add root readme</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.8.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.8.0.1 - 
 9d6047 - 2026-06-14</span>
               </div>
-              <h4>Update agent and knitstitch docs</h4>
+              <h5>Update agent and knitstitch docs</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.0.5">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-sky">Documentation</span>
                 <span class="caption">v1.2.0.5 - 
 2c7713 - 2026-06-07</span>
               </div>
-              <h4>Add AGENT.md and category groups configuration</h4>
+              <h5>Add AGENT.md and category groups configuration</h5>
             </div>
           </li>
         </ul>
       </section>
       <section class="panel panel--padded" id="refactor-changes-v1">
-        <h3>Refactors</h3>
+        <h4>Refactors</h4>
         <ul class="list">
-          <li>
+          <li id="v1.38.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.38.0.1 - 
 691fb7 - 2026-07-12</span>
               </div>
-              <h4>Extract constraint solver into focused modules</h4>
+              <h5>Extract constraint solver into focused modules</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0.7">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.36.0.7 - 
 ae8ae9 - 2026-07-11</span>
               </div>
-              <h4>Rename CraftCms test folder to PascalCase and update config</h4>
+              <h5>Rename CraftCms test folder to PascalCase and update config</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0.5">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.36.0.5 - 
 fe69f2 - 2026-07-11</span>
               </div>
-              <h4>Split mainUi.js into focused panel controllers</h4>
+              <h5>Split mainUi.js into focused panel controllers</h5>
               <ul>
                 <li>extract shared DOM helpers into uiUtils.js (getElement, bindIfPresent, toggleActive, collectRefs)</li>
                 <li>extract grid panel into gridPanelController.js (gauge inputs, grid info, finished size, clear-manual)</li>
@@ -1372,14 +1639,14 @@ fe69f2 - 2026-07-11</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.36.0.2 - 
 6b165e - 2026-07-11</span>
               </div>
-              <h4>Introduce tool registry to coordinate pointer dispatch</h4>
+              <h5>Introduce tool registry to coordinate pointer dispatch</h5>
               <ul>
                 <li>move tool instantiation and pointer-event dispatch out of SketchService into a dedicated ToolRegistry</li>
                 <li>registry owns LineTool, DimensionTool, ConstraintTool, AnchorTool, and TemplateTool instances and routes canvas clicks, mouse moves, line/point clicks, and right-mouse suppression to the active tool</li>
@@ -1389,14 +1656,14 @@ fe69f2 - 2026-07-11</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.36.0.1 - 
 5b3f8d - 2026-07-11</span>
               </div>
-              <h4>Split sketchService into focused modules</h4>
+              <h5>Split sketchService into focused modules</h5>
               <ul>
                 <li>extract pointer/drag interactions into interactions/ handlers</li>
                 <li>move lifecycle, selection, properties, and store/id/feedback helpers into state/ modules</li>
@@ -1405,14 +1672,14 @@ fe69f2 - 2026-07-11</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.35.2.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.35.2.2 - 
 e94e68 - 2026-07-11</span>
               </div>
-              <h4>Restructure sketch service files into role folders and extract helpers</h4>
+              <h5>Restructure sketch service files into role folders and extract helpers</h5>
               <ul>
                 <li>Move sketch source files into tools, templates, solver, state, render, and fill subdirectories based on responsibility.</li>
                 <li>Update all imports across source, tests, and documentation.</li>
@@ -1420,14 +1687,14 @@ e94e68 - 2026-07-11</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.1.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.32.1.2 - 
 9700d0 - 2026-07-09</span>
               </div>
-              <h4>Split global solver into focused modules</h4>
+              <h5>Split global solver into focused modules</h5>
               <ul>
                 <li>extract error terms and analytical gradients into constraintErrorTerms.js</li>
                 <li>extract hard constraint propagation into hardConstraintPropagator.js</li>
@@ -1436,14 +1703,14 @@ e94e68 - 2026-07-11</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.32.0.1 - 
 12ee91 - 2026-07-06</span>
               </div>
-              <h4>Cache sketch fill and throttle pan redraws</h4>
+              <h5>Cache sketch fill and throttle pan redraws</h5>
               <ul>
                 <li>cache sketch-derived filled cells, recompute only when sketch.lines changes</li>
                 <li>throttle pan/zoom redraws to ~60fps via PAN_REDRAW_MS cap</li>
@@ -1455,14 +1722,14 @@ e94e68 - 2026-07-11</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.29.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.29.0.3 - 
 aa1a06 - 2026-07-06</span>
               </div>
-              <h4>Rename PascalCase files to camelCase</h4>
+              <h5>Rename PascalCase files to camelCase</h5>
               <ul>
                 <li>rename 17 source files from PascalCase to camelCase to match import paths</li>
                 <li>rename 5 test files and 1 e2e spec to camelCase</li>
@@ -1470,14 +1737,14 @@ aa1a06 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.26.0.4 - 
 348604 - 2026-07-06</span>
               </div>
-              <h4>Rename container/panel/card classes and normalize sidebars</h4>
+              <h5>Rename container/panel/card classes and normalize sidebars</h5>
               <ul>
                 <li>rename .container to .shell across all templates</li>
                 <li>rename .panel to .container-section, .card to .panel</li>
@@ -1488,14 +1755,14 @@ aa1a06 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.26.0.1 - 
 4071e6 - 2026-07-06</span>
               </div>
-              <h4>Extract rendering and overlay logic from SketchLayer</h4>
+              <h5>Extract rendering and overlay logic from SketchLayer</h5>
               <ul>
                 <li>dimension rendering moved to dimensionRenderer.js</li>
                 <li>constraint icons moved to constraintIcons.js</li>
@@ -1505,54 +1772,54 @@ aa1a06 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.7">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.24.0.7 - 
 03c87e - 2026-06-29</span>
               </div>
-              <h4>Extract stroke colour and thickness options into styleOptions.js</h4>
+              <h5>Extract stroke colour and thickness options into styleOptions.js</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.5">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.24.0.5 - 
 082d76 - 2026-06-29</span>
               </div>
-              <h4>Extract undo history into HistoryManager</h4>
+              <h5>Extract undo history into HistoryManager</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.24.0.4 - 
 0ffb37 - 2026-06-29</span>
               </div>
-              <h4>Extract line drawing into LineTool</h4>
+              <h5>Extract line drawing into LineTool</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.1.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.22.1.2 - 
 3b6eb0 - 2026-06-29</span>
               </div>
-              <h4>Standardize source filenames to camelCase</h4>
+              <h5>Standardize source filenames to camelCase</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.22.0.1 - 
 30ca87 - 2026-06-27</span>
               </div>
-              <h4>Add twig changelog format and bullet list output</h4>
+              <h5>Add twig changelog format and bullet list output</h5>
               <ul>
                 <li>add --format=twig to GenerateBuildInfo.php for changelog template output</li>
                 <li>detect bullet-style commit bodies and emit &lt;ul&gt;/&lt;li&gt; instead of &lt;p&gt;</li>
@@ -1561,14 +1828,14 @@ aa1a06 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.21.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.21.0.2 - 
 7d7cf6 - 2026-06-27</span>
               </div>
-              <h4>Update templates for unified card and list patterns</h4>
+              <h5>Update templates for unified card and list patterns</h5>
               <ul>
                 <li>replace .inner-card with .card modifiers across post, posts, category, tag, index</li>
                 <li>use div.grid instead of ul.grid for layout containers</li>
@@ -1579,14 +1846,14 @@ aa1a06 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.21.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.21.0.1 - 
 b35c00 - 2026-06-27</span>
               </div>
-              <h4>Unify card, panel, list, image, and gallery styles</h4>
+              <h5>Unify card, panel, list, image, and gallery styles</h5>
               <ul>
                 <li>merge .inner-card into .card with --padded and --image-top modifiers</li>
                 <li>unify .card-content into .card-body as single padded content wrapper</li>
@@ -1599,14 +1866,14 @@ b35c00 - 2026-06-27</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.20.0.3 - 
 fd28fb - 2026-06-26</span>
               </div>
-              <h4>Update templates and add base layout</h4>
+              <h5>Update templates and add base layout</h5>
               <ul>
                 <li>Add templates/_layouts/base.twig for shared page structure</li>
                 <li>Update post, archive, category, tag, index, and style-guide templates to extend base layout</li>
@@ -1615,14 +1882,14 @@ fd28fb - 2026-06-26</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.20.0.1 - 
 bf5371 - 2026-06-26</span>
               </div>
-              <h4>Move resource links to sidebar</h4>
+              <h5>Move resource links to sidebar</h5>
               <ul>
                 <li>Remove resource link buttons from the main content panel</li>
                 <li>Add a Links section to the project details sidebar</li>
@@ -1630,14 +1897,14 @@ bf5371 - 2026-06-26</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.16.0.5">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.16.0.5 - 
 02871f - 2026-06-22</span>
               </div>
-              <h4>Align shared templates and archive styling</h4>
+              <h5>Align shared templates and archive styling</h5>
               <ul>
                 <li>update the home, archive, header, sidebar, and entry templates together</li>
                 <li>tighten archive card and sidebar presentation in the shared stylesheet</li>
@@ -1645,40 +1912,40 @@ bf5371 - 2026-06-26</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.16.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.16.0.1 - 
 66a602 - 2026-06-22</span>
               </div>
-              <h4>Split bootstrap, UI wiring, and sketch helpers</h4>
+              <h5>Split bootstrap, UI wiring, and sketch helpers</h5>
               <ul>
                 <li>Extract the KnitStitch sidebar and store wiring into dedicated UI helpers, move sketch state mutations into shared helper functions, add the new constraint regression coverage, and rebuild the bundled browser asset from the refactor.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.15.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.15.0.1 - 
 436e55 - 2026-06-22</span>
               </div>
-              <h4>Unify the shared layout and typography</h4>
+              <h5>Unify the shared layout and typography</h5>
               <ul>
                 <li>Move the non-home templates onto the same header, footer, page subheader, content width, and CSS system so posts, archives, markdown pages, and the homepage all inherit one consistent shell.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.13.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.13.0.2 - 
 8a6ae6 - 2026-06-21</span>
               </div>
-              <h4>Reorganize knitstitch sketch models and services</h4>
+              <h5>Reorganize knitstitch sketch models and services</h5>
               <ul>
                 <li>Remove old SketchModel classes (SketchColorOption, SketchConstraint, SketchDimension, SketchLine, SketchPoint)</li>
                 <li>Remove old SketchService.js (replaced by services/sketch/SketchService.js)</li>
@@ -1687,59 +1954,59 @@ bf5371 - 2026-06-26</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.9.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.9.0.2 - 
 f843ea - 2026-06-21</span>
               </div>
-              <h4>Organize sketch models and services</h4>
+              <h5>Organize sketch models and services</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.3.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.3.0.1 - 
 d98294 - 2026-06-07</span>
               </div>
-              <h4>Remove hardcoded content from home and header scripts</h4>
+              <h5>Remove hardcoded content from home and header scripts</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-stone">Refactors</span>
                 <span class="caption">v1.2.0.3 - 
 a2e19a - 2026-06-07</span>
               </div>
-              <h4>Update post, sidebar, index, and posts templates</h4>
+              <h5>Update post, sidebar, index, and posts templates</h5>
             </div>
           </li>
         </ul>
       </section>
       <section class="panel panel--padded" id="test-changes-v1">
-        <h3>Tests</h3>
+        <h4>Tests</h4>
         <ul class="list">
-          <li>
+          <li id="v1.36.0.8">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.36.0.8 - 
 b531ef - 2026-07-11</span>
               </div>
-              <h4>Reorganize KnitStitch tests, anchor to origin, and split constraint tests</h4>
+              <h5>Reorganize KnitStitch tests, anchor to origin, and split constraint tests</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.35.2.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.35.2.1 - 
 901304 - 2026-07-09</span>
               </div>
-              <h4>Fix e2e tests for anchored origin and centred viewport</h4>
+              <h5>Fix e2e tests for anchored origin and centred viewport</h5>
               <ul>
                 <li>account for centred viewport origin in click and drag helpers</li>
                 <li>expect preserved origin anchor after deletions</li>
@@ -1747,28 +2014,28 @@ b531ef - 2026-07-11</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.34.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.34.0.1 - 
 f24850 - 2026-07-09</span>
               </div>
-              <h4>Add e2e test for sock template dimension locking</h4>
+              <h5>Add e2e test for sock template dimension locking</h5>
               <ul>
                 <li>add drag-based test verifying driven dimensions stay locked after manipulation</li>
                 <li>update playwright config to run against the DDEV site instead of a local vite server</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.32.0.3 - 
 a8ae69 - 2026-07-06</span>
               </div>
-              <h4>Add e2e tests for constraints and cell fill</h4>
+              <h5>Add e2e tests for constraints and cell fill</h5>
               <ul>
                 <li>add e2e tests for perpendicular constraint maintenance during drag and driven dimensions</li>
                 <li>add e2e tests for sock template perpendicular constraints at corners</li>
@@ -1778,14 +2045,14 @@ a8ae69 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.29.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.29.0.1 - 
 354376 - 2026-07-06</span>
               </div>
-              <h4>Update tests for sparse cell model and new closedShapeFill API</h4>
+              <h5>Update tests for sparse cell model and new closedShapeFill API</h5>
               <ul>
                 <li>rewrite GridService tests for toggleCell, clearCells, getFilledBoundingBox</li>
                 <li>update Store tests to use cellWidthPx and filledCells Set</li>
@@ -1793,68 +2060,68 @@ a8ae69 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.6">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.26.0.6 - 
 8d878e - 2026-07-06</span>
               </div>
-              <h4>Update tests for renamed classes and whitelist object-list</h4>
+              <h5>Update tests for renamed classes and whitelist object-list</h5>
               <ul>
                 <li>update selector references for container-section/panel rename</li>
                 <li>whitelist .object-list li selectors as intentional scoped selectors</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.25.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.25.0.1 - 
 f608d1 - 2026-06-29</span>
               </div>
-              <h4>Add equal length constraint tests</h4>
+              <h5>Add equal length constraint tests</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.24.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.24.0.1 - 
 15d3a6 - 2026-06-29</span>
               </div>
-              <h4>Add midpoint constraint tests</h4>
+              <h5>Add midpoint constraint tests</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.23.1.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.23.1.2 - 
 cb26a9 - 2026-06-29</span>
               </div>
-              <h4>Configure vitest and fix remaining test import paths</h4>
+              <h5>Configure vitest and fix remaining test import paths</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.23.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.23.0.1 - 
 7d35da - 2026-06-29</span>
               </div>
-              <h4>Add undo history coverage</h4>
+              <h5>Add undo history coverage</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.22.0.2 - 
 331332 - 2026-06-27</span>
               </div>
-              <h4>Update and add tests for unified template structure</h4>
+              <h5>Update and add tests for unified template structure</h5>
               <ul>
                 <li>update post-fields test for .thumb class and generic ol</li>
                 <li>update css-selector-simplicity whitelist for .list &gt; li selectors</li>
@@ -1867,14 +2134,14 @@ cb26a9 - 2026-06-29</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.20.0.2 - 
 0ed2a0 - 2026-06-26</span>
               </div>
-              <h4>Restructure test directories and add field coverage</h4>
+              <h5>Restructure test directories and add field coverage</h5>
               <ul>
                 <li>Move craft-cms tests under tests/craft-cms/ with unit and e2e subdirs</li>
                 <li>Move knit-stitch tests under tests/knit-stitch/ with unit and e2e subdirs</li>
@@ -1885,27 +2152,27 @@ cb26a9 - 2026-06-29</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.19.0.1 - 
 3dceec - 2026-06-22</span>
               </div>
-              <h4>Add changelog page e2e and unit tests</h4>
+              <h5>Add changelog page e2e and unit tests</h5>
               <ul>
                 <li>Cover the change-log-page template structure with a Playwright e2e spec and a unit test for the generated fragment. Tests verify the build-snapshot chip group, section headings, and per-entry chip/date/title markup.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.16.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.16.0.4 - 
 1aa543 - 2026-06-22</span>
               </div>
-              <h4>Add field-layout and archive contract coverage</h4>
+              <h5>Add field-layout and archive contract coverage</h5>
               <ul>
                 <li>pin Craft admin field layouts for posts, archive, home, and header globals</li>
                 <li>assert template dependencies for archive cards, single posts, and navigation</li>
@@ -1913,86 +2180,86 @@ cb26a9 - 2026-06-29</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.9.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.9.0.1 - 
 ff3a00 - 2026-06-21</span>
               </div>
-              <h4>Add browser sketch regressions</h4>
+              <h5>Add browser sketch regressions</h5>
               <ul>
                 <li>Add Playwright configuration, fixture wiring, and end-to-end coverage for sketch selection, dimension editing, deletion flows, and perpendicular constraints.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.8.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-plum">Tests</span>
                 <span class="caption">v1.8.0.2 - 
 bbde72 - 2026-06-14</span>
               </div>
-              <h4>Add Playwright e2e coverage</h4>
+              <h5>Add Playwright e2e coverage</h5>
             </div>
           </li>
         </ul>
       </section>
       <section class="panel panel--padded" id="chore-changes-v1">
-        <h3>Maintenance</h3>
+        <h4>Maintenance</h4>
         <ul class="list">
-          <li>
+          <li id="v1.37.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.37.1.1 - 
 5e01db - 2026-07-12</span>
               </div>
-              <h4>Add git rules to .devin/rules</h4>
+              <h5>Add git rules to .devin/rules</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.36.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.36.0.3 - 
 5dc2ae - 2026-07-11</span>
               </div>
-              <h4>Remove duplicate _recordSnapshot forwarder and mark roadmap item done</h4>
+              <h5>Remove duplicate _recordSnapshot forwarder and mark roadmap item done</h5>
               <ul>
                 <li>sketchService.js had two identical _recordSnapshot methods; remove the second copy so the service stays a thin coordinator</li>
                 <li>mark the &quot;Slim sketchService.js into a thin coordinator with a tool registry&quot; roadmap item as complete</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.8">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.26.0.8 - 
 06858b - 2026-07-06</span>
               </div>
-              <h4>Remove duplicate playwright fixture from old location</h4>
+              <h5>Remove duplicate playwright fixture from old location</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.7">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.26.0.7 - 
 8dc50a - 2026-07-06</span>
               </div>
-              <h4>Regenerate change log</h4>
+              <h5>Regenerate change log</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.26.0.3 - 
 c6cb24 - 2026-07-06</span>
               </div>
-              <h4>Update playwright configs and e2e specs</h4>
+              <h5>Update playwright configs and e2e specs</h5>
               <ul>
                 <li>move root playwright config to use shared fixtures</li>
                 <li>update SketchConstraints spec for new sketch module structure</li>
@@ -2000,14 +2267,14 @@ c6cb24 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.23.1.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.23.1.4 - 
 029f1b - 2026-06-29</span>
               </div>
-              <h4>Add KnitStitch npm build to VPS deploy</h4>
+              <h5>Add KnitStitch npm build to VPS deploy</h5>
               <ul>
                 <li>Run npm ci + npm run build in web/knitstitch during webhook deploy</li>
                 <li>Update manual deploy fallback instructions in AGENTS.md</li>
@@ -2015,98 +2282,98 @@ c6cb24 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.23.1.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.23.1.3 - 
 be0990 - 2026-06-29</span>
               </div>
-              <h4>Stop tracking generated dist and ignore web/dist</h4>
+              <h5>Stop tracking generated dist and ignore web/dist</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.0.5">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.22.0.5 - 
 8c6f71 - 2026-06-27</span>
               </div>
-              <h4>Re-save post images</h4>
+              <h5>Re-save post images</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.22.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.22.0.3 - 
 94edb4 - 2026-06-27</span>
               </div>
-              <h4>Remove one-off recovery scripts</h4>
+              <h5>Remove one-off recovery scripts</h5>
               <ul>
                 <li>Recovery history and drift-repair notes are documented in docs/content-recovery.md.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.20.1.1 - 
 e7cb4f - 2026-06-27</span>
               </div>
-              <h4>Exclude playwright artifacts, debug output, and local ddev config</h4>
+              <h5>Exclude playwright artifacts, debug output, and local ddev config</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.8">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.20.0.8 - 
 2a2817 - 2026-06-26</span>
               </div>
-              <h4>Remove tracked test-results file</h4>
+              <h5>Remove tracked test-results file</h5>
               <ul>
                 <li>Remove .last-run.json from tracking now that test-results/ is gitignored</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.7">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.20.0.7 - 
 87188e - 2026-06-26</span>
               </div>
-              <h4>Update package config and README</h4>
+              <h5>Update package config and README</h5>
               <ul>
                 <li>Update package.json dependencies</li>
                 <li>Update README with current project structure</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.6">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.20.0.6 - 
 59208b - 2026-06-26</span>
               </div>
-              <h4>Update webhook and build info generator</h4>
+              <h5>Update webhook and build info generator</h5>
               <ul>
                 <li>Add twig output format to GenerateBuildInfo.php</li>
                 <li>Update webhook.php with minor adjustments</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.5">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.20.0.5 - 
 6e5c2d - 2026-06-26</span>
               </div>
-              <h4>Update project config and agent docs</h4>
+              <h5>Update project config and agent docs</h5>
               <ul>
                 <li>Update category group and entry type YAML configs</li>
                 <li>Update project.yaml with new sections and fields</li>
@@ -2114,14 +2381,14 @@ e7cb4f - 2026-06-27</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.2.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.19.2.2 - 
 ee23f9 - 2026-06-26</span>
               </div>
-              <h4>Exclude IDE settings and test artifacts</h4>
+              <h5>Exclude IDE settings and test artifacts</h5>
               <ul>
                 <li>Add Folder.DotSettings.user to ignored files</li>
                 <li>Add test-results/ chromium screenshots to ignored files</li>
@@ -2129,63 +2396,63 @@ ee23f9 - 2026-06-26</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.1.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.19.1.3 - 
 446d40 - 2026-06-22</span>
               </div>
-              <h4>Regenerate build info for v1.17.0</h4>
+              <h5>Regenerate build info for v1.17.0</h5>
               <ul>
                 <li>Reflects the current HEAD after all changelog and colour-pair commits. Also strips the stray BOM from the previous generated output.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.16.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.16.0.2 - 
 7d994c - 2026-06-22</span>
               </div>
-              <h4>Ignore local tooling files</h4>
+              <h5>Ignore local tooling files</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.13.2.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.13.2.2 - 
 0896f6 - 2026-06-22</span>
               </div>
-              <h4>Load .env.dev in local development</h4>
+              <h5>Load .env.dev in local development</h5>
               <ul>
                 <li>Make bootstrap select the DDEV-specific environment file when IS_DDEV_PROJECT is true, so local admin changes use the dev database and allow project-config writes without affecting production.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.13.2.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.13.2.1 - 
 121ae0 - 2026-06-22</span>
               </div>
-              <h4>Bump Craft CMS to 5.10.7</h4>
+              <h5>Bump Craft CMS to 5.10.7</h5>
               <ul>
                 <li>Upgrade the CMS and supporting packages to the current patch release so the project config, markdown page support, and local runtime changes are based on the same dependency set.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.10.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.10.0.2 - 
 ddfed9 - 2026-06-21</span>
               </div>
-              <h4>Un-ignore scripts directory and reorganize recovery scripts</h4>
+              <h5>Un-ignore scripts directory and reorganize recovery scripts</h5>
               <ul>
                 <li>Remove /scripts from .gitignore so scripts are tracked in the repo</li>
                 <li>Move legacy recovery/import scripts to scripts/recovery_scripts/</li>
@@ -2194,99 +2461,99 @@ ddfed9 - 2026-06-21</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.8.0.3">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.8.0.3 - 
 7c9be9 - 2026-06-14</span>
               </div>
-              <h4>Remove stale deployment artifacts</h4>
+              <h5>Remove stale deployment artifacts</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.7.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.7.0.1 - 
 0acfa5 - 2026-06-14</span>
               </div>
-              <h4>Refresh knitstitch bundle</h4>
+              <h5>Refresh knitstitch bundle</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.3.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.3.0.2 - 
 c4da20 - 2026-06-13</span>
               </div>
-              <h4>Ignore local node_modules folders</h4>
+              <h5>Ignore local node_modules folders</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.0.4">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.2.0.4 - 
 e84fe4 - 2026-06-07</span>
               </div>
-              <h4>Update project configuration</h4>
+              <h5>Update project configuration</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.0.2">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.2.0.2 - 
 04d361 - 2026-06-07</span>
               </div>
-              <h4>Remove debug scripts</h4>
+              <h5>Remove debug scripts</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.0.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.2.0.1 - 
 df2f5e - 2026-06-07</span>
               </div>
-              <h4>Add uploads directory gitignore</h4>
+              <h5>Add uploads directory gitignore</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.1.1.1">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.1.1.1 - 
 6fd050 - 2026-06-07</span>
               </div>
-              <h4>Add content migration and restoration scripts</h4>
+              <h5>Add content migration and restoration scripts</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.8">
             <div class="container-content">
               <div class="container-actions">
               <span class="chip color-pair-olive">Maintenance</span>
                 <span class="caption">v1.0.0.8 - 
 cbfe9c - 2026-06-07</span>
               </div>
-              <h4>Update composer dependencies</h4>
+              <h5>Update composer dependencies</h5>
             </div>
           </li>
         </ul>
       </section>
       <section class="panel panel--padded" id="other-changes-v1">
-        <h3>Other changes</h3>
+        <h4>Other Changes</h4>
         <ul class="list">
-          <li>
+          <li id="v1.34.0.3">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.34.0.3 - 
 9f3f37 - 2026-07-09</span>
               </div>
-              <h4>Improve heading weights, spacing, and markdown page layout</h4>
+              <h5>Improve heading weights, spacing, and markdown page layout</h5>
               <ul>
                 <li>increase heading font weights to 700 for stronger visual hierarchy</li>
                 <li>add top margins to headings with first-child reset</li>
@@ -2295,14 +2562,14 @@ cbfe9c - 2026-06-07</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.32.0.2">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.32.0.2 - 
 663d38 - 2026-07-06</span>
               </div>
-              <h4>Render anchor points as squares and update constraint colours</h4>
+              <h5>Render anchor points as squares and update constraint colours</h5>
               <ul>
                 <li>render anchor points as squares to distinguish them from regular points</li>
                 <li>swap selected/default colours for constraint icons</li>
@@ -2310,28 +2577,28 @@ cbfe9c - 2026-06-07</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.27.0.2">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.27.0.2 - 
 7f4ba8 - 2026-07-06</span>
               </div>
-              <h4>Increase panel padding to 18px and add heading top margin</h4>
+              <h5>Increase panel padding to 18px and add heading top margin</h5>
               <ul>
                 <li>increase panel--padded padding from 14px to 18px</li>
                 <li>add 4px top margin to h2, h3, h4 for better spacing inside panels</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.27.0.1">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.27.0.1 - 
 b79892 - 2026-07-06</span>
               </div>
-              <h4>Use plain panels and always render descriptions as lists</h4>
+              <h5>Use plain panels and always render descriptions as lists</h5>
               <ul>
                 <li>switch change log sections from headed panels to plain panel--padded</li>
                 <li>wrap single-string descriptions in ul/li instead of p for consistency</li>
@@ -2339,14 +2606,14 @@ b79892 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.9">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.26.0.9 - 
 515788 - 2026-07-06</span>
               </div>
-              <h4>Wrap each change log section in a headed panel</h4>
+              <h5>Wrap each change log section in a headed panel</h5>
               <ul>
                 <li>update GenerateBuildInfo.php to output container-section--headed with header bar</li>
                 <li>regenerate change-log.twig with panel structure</li>
@@ -2354,14 +2621,14 @@ b79892 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.26.0.5">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.26.0.5 - 
 a25228 - 2026-07-06</span>
               </div>
-              <h4>Merge KnitStitch app.css into site.css and use shared classes</h4>
+              <h5>Merge KnitStitch app.css into site.css and use shared classes</h5>
               <ul>
                 <li>delete web/knitstitch/css/app.css; all styles now in site.css</li>
                 <li>remove CSS import from main.js; Vite no longer bundles CSS</li>
@@ -2377,14 +2644,14 @@ a25228 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.20.0.4">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.20.0.4 - 
 21fa1c - 2026-06-26</span>
               </div>
-              <h4>Update site styles for layout and components</h4>
+              <h5>Update site styles for layout and components</h5>
               <ul>
                 <li>Refactor card, panel, and gallery styles</li>
                 <li>Add colour pair utility classes</li>
@@ -2392,97 +2659,97 @@ a25228 - 2026-07-06</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.19.2.1">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.19.2.1 - 
 05c97b - 2026-06-22</span>
               </div>
-              <h4>Revert &quot;fix(deploy): reset generated buildInfo.js before git pull&quot;</h4>
+              <h5>Revert &quot;fix(deploy): reset generated buildInfo.js before git pull&quot;</h5>
               <ul>
                 <li>This reverts commit fed78a05e9bf0eb51dcaa88e9fc9f725724d76e4.</li>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.2.5.1">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.2.5.1 - 
 569122 - 2026-06-07</span>
               </div>
-              <h4>Remove scripts/.env from git tracking</h4>
+              <h5>Remove scripts/.env from git tracking</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.2.2.1">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.2.2.1 - 
 2f54c2 - 2026-06-07</span>
               </div>
-              <h4>Remove content creation scripts from deployment workflow</h4>
+              <h5>Remove content creation scripts from deployment workflow</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.7">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.0.0.7 - 
 a00308 - 2026-06-01</span>
               </div>
-              <h4>Improve database push script for CloudPanel</h4>
+              <h5>Improve database push script for CloudPanel</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.6">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.0.0.6 - 
 7b42a4 - 2026-05-31</span>
               </div>
-              <h4>Refine content pages with sidebar layout</h4>
+              <h5>Refine content pages with sidebar layout</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.5">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.0.0.5 - 
 b7fe8c - 2026-05-31</span>
               </div>
-              <h4>Clean imported post bodies and add DB push script</h4>
+              <h5>Clean imported post bodies and add DB push script</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.4">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.0.0.4 - 
 0d54a8 - 2026-05-31</span>
               </div>
-              <h4>Remove SSH passphrase from deployment workflow</h4>
+              <h5>Remove SSH passphrase from deployment workflow</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.3">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.0.0.3 - 
 d86d9e - 2026-05-31</span>
               </div>
-              <h4>Add passphrase support for SSH in deployment workflow</h4>
+              <h5>Add passphrase support for SSH in deployment workflow</h5>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.2">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.0.0.2 - 
 a1164e - 2026-05-31</span>
               </div>
-              <h4>Set up deployment workflow and homepage redesign</h4>
+              <h5>Set up deployment workflow and homepage redesign</h5>
               <ul>
                 <li>Added GitHub Actions workflow for production deployment via SSH.</li>
                 <li>Redesigned the homepage with a new layout, styles, and visual improvements.</li>
@@ -2490,13 +2757,13 @@ a1164e - 2026-05-31</span>
               </ul>
             </div>
           </li>
-          <li>
+          <li id="v1.0.0.1">
             <div class="container-content">
               <div class="container-actions">
-              <span class="chip color-pair-ink">Other changes</span>
+              <span class="chip color-pair-ink">Other Changes</span>
                 <span class="caption">v1.0.0.1 - e66b92c - 2026-05-31</span>
               </div>
-              <h4>Initial commit</h4>
+              <h5>Initial commit</h5>
             </div>
           </li>
         </ul>

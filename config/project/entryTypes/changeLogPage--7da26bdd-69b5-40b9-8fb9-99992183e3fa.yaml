@@ -43,7 +43,7 @@ fieldLayouts:
 handle: changeLogPage
 hasTitleField: true
 icon: null
-name: 'Change Log'
+name: 'Changelog'
 showSlugField: false
 showStatusField: false
 slugTranslationKeyFormat: null

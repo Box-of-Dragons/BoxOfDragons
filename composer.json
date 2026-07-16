@@ -24,9 +24,9 @@
     ],
     "build-info": [
       "@php scripts/GenerateBuildInfo.php --root=. --output=templates/_generated/build-info.twig --format=twiginfo",
-      "@php scripts/GenerateBuildInfo.php --root=. --output=templates/_generated/change-log.twig --format=twig"
+      "@php scripts/GenerateBuildInfo.php --root=. --output=templates/_generated/changelog.twig --format=twig"
     ],
-    "build-changelog": "@php scripts/GenerateBuildInfo.php --root=. --output=templates/_generated/change-log.twig --format=twig",
+    "build-changelog": "@php scripts/GenerateBuildInfo.php --root=. --output=templates/_generated/changelog.twig --format=twig",
     "post-install-cmd": [
       "@build-info"
     ]

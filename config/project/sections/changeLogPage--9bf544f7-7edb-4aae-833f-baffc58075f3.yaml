@@ -6,7 +6,7 @@ entryTypes:
 handle: changeLogPage
 maxAuthors: 1
 minAuthors: 1
-name: 'Change Log'
+name: 'Changelog'
 previewTargets:
   -
     label: 'Primary entry page'
@@ -16,6 +16,6 @@ siteSettings:
   fe57eae0-97a1-40b3-bf35-42f69f3d1203: # Box of Dragons
     enabledByDefault: true
     hasUrls: true
-    template: _entries/change-log-page.twig
-    uriFormat: change-log
+    template: _entries/changelog-page.twig
+    uriFormat: changelog
 type: single
