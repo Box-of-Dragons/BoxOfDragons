@@ -206,7 +206,7 @@
             {% endif %}
         {% endfor %}
         {% set archiveTags = craft.app.tags.getTagGroupByHandle('postTags') ? craft.tags.group('postTags').orderBy('title asc').all() : [] %}
-        <aside class="sidebar">
+        <aside class="sidebar sidebar--sticky">
             <form method="get" action="{{ postsIndexUrl }}">
                 <div class="container-sections">
                     <section class="container-section--headed">

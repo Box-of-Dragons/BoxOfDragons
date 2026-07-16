@@ -1,4 +1,4 @@
-<aside class="sidebar" aria-label="{{ title|default('Sidebar') }}">
+<aside class="sidebar sidebar--sticky" aria-label="{{ title|default('Sidebar') }}">
     {% if sections is defined and sections|length %}
         <div class="container-sections">
             {% for section in sections %}
