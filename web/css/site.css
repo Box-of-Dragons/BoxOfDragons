@@ -753,6 +753,8 @@ button,
    ========================================================================== */
 input[type="text"],
 input[type="number"],
+input[type="email"],
+input[type="password"],
 select {
     padding: 5px 8px;
     border: 1px solid var(--border);
@@ -784,7 +786,9 @@ select:focus {
 }
 
 .form-row input[type="text"],
-.form-row input[type="number"] {
+.form-row input[type="number"],
+.form-row input[type="email"],
+.form-row input[type="password"] {
     flex: 1;
 }
 
