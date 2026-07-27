@@ -82,7 +82,18 @@ Use that document only when content has been lost, relations have drifted, field
 
 This project uses Conventional Commits to drive automatic versioning and changelog generation.
 
-For the full commit message format, version bump rules, scopes, and tagging guidance, see [docs/git-rules.md](</E:/Coding Projects/craftcms/docs/git-rules.md>).
+For the full commit message format, version bump rules, and tagging guidance, see the canonical [git-rules.md](../StructuredChaos/docs/git-rules.md) in the StructuredChaos umbrella repo. That file is shared across all Structured Chaos family repos.
+
+### CraftCms-specific scopes
+
+Common scopes used in this project:
+
+- **css** — site stylesheet and styling
+- **site** — site structure, templates, or layout
+- **agents** — AGENTS.md or agent documentation
+- **readme** — README documentation
+
+This repo uses `ui` (not `style`) for the no-logic-change styling commit type. Scopes are not enforced — use whatever best describes the area of change.
 
 ## VPS Deploy via GitHub Webhook
 

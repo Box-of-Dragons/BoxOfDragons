@@ -9,6 +9,8 @@ additional_fqdns: []
 database:
     type: mysql
     version: "8.0"
+bind_all_interfaces: true
+host_webserver_port: "8888"
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
