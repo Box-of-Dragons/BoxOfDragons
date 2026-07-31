@@ -15,3 +15,4 @@ test-screenshots/
 screenshots/
 traces/
 .ddev/docker-compose.wordpress.yaml
+/web/js/buildInfo.js

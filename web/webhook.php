@@ -111,6 +111,7 @@ putenv('PATH=' . $envPath);
 $commands = [
     'git fetch origin master 2>&1',
     'git reset --hard origin/master 2>&1',
+    'php scripts/GenerateBuildInfo.php --root=. --output=web/js/buildInfo.js --format=js 2>&1',
 ];
 
 $output = [];

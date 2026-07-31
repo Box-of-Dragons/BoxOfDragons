@@ -34,4 +34,7 @@ jobs:
             git fetch origin master
             git reset --hard origin/master
 
+            echo "Generating build info..."
+            php scripts/GenerateBuildInfo.php --root=. --output=web/js/buildInfo.js --format=js
+
             echo "Deploy completed."
