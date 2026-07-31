@@ -191,10 +191,9 @@ function normalize_category(array $row): array {
 function get_post_featured_image(int $postId): ?array {
     $fieldId = field_id_for_handle('featuredImage');
     if (!$fieldId) return null;
-    $sql = "SELECT a.id, a.filename, a.alt, vf.path
+    $sql = "SELECT a.id, a.filename, a.alt, a.path
             FROM relations r
             JOIN assets a ON a.id = r.targetId
-            JOIN volumefolders vf ON vf.id = a.folderId
             WHERE r.sourceId = ? AND r.fieldId = ?
             ORDER BY r.sortOrder LIMIT 1";
     $stmt = db()->prepare($sql);
@@ -211,10 +210,9 @@ function get_post_featured_image(int $postId): ?array {
 function get_post_gallery_images(int $postId): array {
     $fieldId = field_id_for_handle('postImages');
     if (!$fieldId) return [];
-    $sql = "SELECT a.id, a.filename, a.alt, vf.path
+    $sql = "SELECT a.id, a.filename, a.alt, a.path
             FROM relations r
             JOIN assets a ON a.id = r.targetId
-            JOIN volumefolders vf ON vf.id = a.folderId
             WHERE r.sourceId = ? AND r.fieldId = ?
             ORDER BY r.sortOrder";
     $stmt = db()->prepare($sql);
@@ -232,7 +230,7 @@ function get_post_gallery_images(int $postId): array {
 /** Build the public URL for an asset row. */
 function asset_url(array $assetRow): string {
     // UPLOADS_BASE_URL is the public path (e.g. /uploads/posts).
-    // Craft's volumefolders.path gives the per-asset subfolder (e.g. "2/").
+    // assets.path gives the per-asset subfolder (e.g. "2/").
     $base = rtrim(UPLOADS_BASE_URL, '/');
     $folderPath = trim($assetRow['path'] ?? '', '/');
     $filename = $assetRow['filename'];
