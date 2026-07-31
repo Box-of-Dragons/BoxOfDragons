@@ -68,7 +68,7 @@ This repo is run through DDEV in the local dev environment.
 
 - use `ddev exec php ...` for PHP CLI commands when running them from the host shell
 - do not assume a host `php.exe` is installed or on `PATH`
-- the DDEV project name is `craftcms` (preserved from the Craft era to keep the database)
+- the DDEV project name is `boxofdragons`
 
 ## Git Conventions
 
