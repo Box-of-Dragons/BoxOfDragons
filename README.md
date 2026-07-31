@@ -1,8 +1,8 @@
-# Structured Chaos
+# Box of Dragons
 
 A personal portfolio site covering the things I actually make — crocheted garments and accessories, sewn pieces, parametric 3D models, and the occasional software tool that exists because I needed it to.
 
-The site is built on Craft CMS and is itself a running project. The content model, templates, and archive UI have all been shaped iteratively alongside the portfolio entries they serve. Building the site *is* part of the portfolio.
+The site is a stripped-down PHP application that queries the existing Craft CMS database tables directly via PDO. Building the site *is* part of the portfolio.
 
 ## What's in the archive
 
@@ -24,15 +24,18 @@ Software I have built because I needed it. Development on these tools is documen
 
 ## How the site is built
 
-The front end is Craft CMS with Twig templates. Content modelling — sections, fields, taxonomies — is managed through Craft project config and version-controlled alongside the templates. Archive filtering is handled server-side; the sidebar form submits back to `/posts` and Twig does the query logic.
+The front end is plain PHP with PDO queries against the existing MySQL database (originally created by Craft CMS). A single front controller (`web/index.php`) routes requests to page files in `pages/`, which use library functions in `lib/` for database access and rendering. Archive filtering is handled server-side via PDO query parameters.
 
-Most of the development has been done with AI coding tools in the loop. The agent notes that shape how those sessions run are in `AGENTS.md`. The site is hosted on a VPS and deploys automatically when commits land on the main branch via a GitHub webhook.
+Most of the development has been done with AI coding tools in the loop. The agent notes that shape how those sessions run are in `AGENTS.md`. The site is hosted on a VPS and deploys automatically when commits land on the master branch via a GitHub webhook.
 
 ## Repository layout
 
-- `templates/` — Twig templates and shared partials
-- `web/` — public CSS/JS assets
-- `config/project/` — Craft project config (sections, fields, entry types, volumes)
-- `scripts/` — recovery and content-management helpers
-- `docs/` — site structure notes, CSS guidelines, and content recovery history
+- `web/index.php` — front controller (URL routing)
+- `lib/` — config, database, post queries, and page shell rendering
+- `pages/` — page-level rendering (posts archive, single post)
+- `web/css/site.css` — BoD-specific CSS overrides
+- `web/uploads/` — uploaded asset files (post images, thumbnails)
+- `scripts/` — build info generator
+- `db/trimmed/` — SQL files for the trimmed database migration
 - `AGENTS.md` — working rules and conventions for agent-assisted development sessions
+- `README.md` — project overview

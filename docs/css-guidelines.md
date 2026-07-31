@@ -5,10 +5,10 @@ This project keeps styling centralized in `web/css/site.css`.
 ## Rules
 
 - Put shared styles in `web/css/site.css`.
-- Avoid inline styles in Twig templates.
+- Avoid inline styles in PHP page files.
 - Use inline styles only when the value is genuinely dynamic and cannot be expressed cleanly in shared CSS.
 - Prefer semantic HTML elements first, then shared utility classes, then component classes.
-- Do not create one-off style blocks in templates for layout, spacing, color, or typography.
+- Do not create one-off style blocks in page files for layout, spacing, color, or typography.
 
 ## Typography
 
@@ -20,7 +20,7 @@ Use the shared semantic type scale:
 - `.caption`
 - `.button`
 
-If a page needs custom typography, add a reusable class to `site.css` instead of duplicating font rules inside a template.
+If a page needs custom typography, add a reusable class to `site.css` instead of duplicating font rules inside a page file.
 
 ## Colors
 
@@ -34,7 +34,7 @@ Use the semantic color tokens:
 - `--tertiary`
 - plus their `-light` and `-dark` variants
 
-Do not hardcode new color values in templates.
+Do not hardcode new color values in page files.
 
 ## Layout
 
@@ -78,7 +78,7 @@ That file already handles:
 - tables
 - images
 
-If a page needs a special content treatment, add a scoped class in `site.css` and keep the template markup clean.
+If a page needs a special content treatment, add a scoped class in `site.css` and keep the page markup clean.
 
 ## Panels And Chips
 
@@ -109,9 +109,9 @@ If a page needs a white content box, add `panel` to the wrapper and keep any pag
 
 If a new chip color is needed, add a named `color-pair-*` variant in `site.css` rather than using inline background colors.
 
-## Templates
+## Page Files
 
-When editing a template:
+When editing a page file:
 
 1. Prefer semantic HTML.
 2. Reuse existing classes.
