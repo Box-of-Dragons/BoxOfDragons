@@ -99,14 +99,20 @@ This repo uses `ui` (not `style`) for the no-logic-change styling commit type. S
 
 The VPS auto-deploys when GitHub receives a push to `master`.
 
+`web/webhook.php` is a PHP webhook listener that:
+
+1. Verifies the GitHub HMAC-SHA256 signature using `GITHUB_WEBHOOK_SECRET` from `.env`
+2. Checks that the push is to `refs/heads/master`
+3. Runs `git fetch origin master` + `git reset --hard origin/master`
+
+nginx serves the `web/` directory directly as the docroot via PHP-FPM. No
+build step, no Composer install, no app process to reload.
+
 ### Manual deploy (fallback)
 
 SSH into the VPS and run:
 
-```
-cd /var/www/craftcms
+```bash
+cd /var/www/boxofdragons
 git pull origin master
-composer install --no-dev --optimize-autoloader
 ```
-
-`composer build-info` runs automatically via `post-install-cmd`.

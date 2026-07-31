@@ -1,9 +1,0 @@
-baseUrl: $PRIMARY_SITE_URL
-enabled: true
-handle: boxofdragons
-hasUrls: true
-language: en
-name: 'Box of Dragons'
-primary: true
-siteGroup: 501afdad-7ccc-463d-9bba-7fae94a5d8c3 # Box of Dragons
-sortOrder: 1

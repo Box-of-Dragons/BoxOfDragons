@@ -1,9 +1,13 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
+# Box of Dragons — stripped PHP version
+# Route all non-file requests to index.php
 
-    # Route 404s to index.php
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} !^/(favicon\.ico|apple-touch-icon.*\.png)$ [NC]
-    RewriteRule (.+) index.php [L]
-</IfModule>
+RewriteEngine On
+RewriteBase /
+
+# Don't route real files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route everything else to the front controller
+RewriteRule ^ index.php [L]

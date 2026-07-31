@@ -5,14 +5,18 @@
  * Setup:
  *   1. Set GITHUB_WEBHOOK_SECRET in .env on the VPS
  *   2. In GitHub repo settings → Webhooks → Add webhook:
- *      - Payload URL: https://yourdomain.com/webhook.php
+ *      - Payload URL: https://www.boxofdragons.misssponto.me.uk/webhook.php
  *      - Content type: application/json
  *      - Secret: same value as GITHUB_WEBHOOK_SECRET
  *      - Events: Just the push event
  *   3. Ensure the VPS repo has the GitHub remote configured and SSH keys set up
+ *
+ * nginx serves the repo web/ directory as the docroot. This file is hit
+ * directly at /webhook.php — no front controller routing needed since
+ * .htaccess only routes non-file requests to index.php.
  */
 
-// Load .env manually (don't bootstrap full Craft for a webhook)
+// Load .env manually (no framework bootstrap for a webhook)
 $envPath = dirname(__DIR__) . '/.env';
 if (!file_exists($envPath)) {
     http_response_code(500);
@@ -107,7 +111,6 @@ putenv('PATH=' . $envPath);
 $commands = [
     'git fetch origin master 2>&1',
     'git reset --hard origin/master 2>&1',
-    'composer install --no-dev --optimize-autoloader 2>&1',
 ];
 
 $output = [];

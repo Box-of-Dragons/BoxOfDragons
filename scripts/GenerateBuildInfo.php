@@ -15,7 +15,7 @@
  * Parameters:
  *   --root     Repository root path (required)
  *   --output   Output file path (required)
- *   --format   Output format: "js", "twig", "twiginfo", or "csharp" (default: csharp)
+ *   --format   Output format: "js", "twig", "twiginfo", "html", or "csharp" (default: csharp)
  */
 
 $options = getopt('', ['root:', 'output:', 'format:']);
@@ -405,14 +405,14 @@ JS;
         . escapeTwigText($displayVersion) . ' (' . escapeTwigText($shortSha) . ")\n";
 } elseif ($format === 'twig') {
     $groupLabels = [
-        'breaking' => 'Breaking Changes',
+        'breaking' => 'Breaking changes',
         'feature' => 'Features',
         'fix' => 'Fixes',
         'docs' => 'Documentation',
         'refactor' => 'Refactors',
         'test' => 'Tests',
         'chore' => 'Maintenance',
-        'other' => 'Other Changes',
+        'other' => 'Other changes',
     ];
     $groupChips = [
         'breaking' => 'rose',
@@ -444,27 +444,33 @@ JS;
 
     $content = '';
     $content .= "<div class=\"changelog-tabs\" data-changelog-tabs>\n";
-    $content .= "  <div class=\"tab-bar\" role=\"tablist\">\n";
+    $content .= "  <div class=\"changelog-tablist\" role=\"tablist\">\n";
     foreach ($majorVersions as $mv) {
         $tabId = 'changelog-v' . $mv;
         $panelId = 'changelog-panel-v' . $mv;
         $isActive = ($mv === $currentMajor) ? ' active' : '';
-        $content .= '    <button class="tab-btn' . $isActive . '" role="tab" data-tab="' . escapeHtml($tabId) . '" data-panel="' . escapeHtml($panelId) . '" aria-controls="' . escapeHtml($panelId) . '" aria-selected="' . ($mv === $currentMajor ? 'true' : 'false') . '">v' . escapeHtml((string)$mv) . "</button>\n";
+        $content .= '    <button class="changelog-tab' . $isActive . '" role="tab" data-tab="' . escapeHtml($tabId) . '" data-panel="' . escapeHtml($panelId) . '" aria-controls="' . escapeHtml($panelId) . '" aria-selected="' . ($mv === $currentMajor ? 'true' : 'false') . '">v' . escapeHtml((string)$mv) . "</button>\n";
     }
     $content .= "  </div>\n";
 
-    // Change Types nav blocks — one per major version, output at the top level
-    // so the page template can move them into the sidebar via JS. Each block
-    // is shown/hidden alongside its matching tab panel. Uses the standard
-    // container-section--headed structure so it matches the sidebar panels.
     foreach ($majorVersions as $mv) {
-        $typesClass = 'changelog-types changelog-types-v' . $mv;
-        $typesClass .= ($mv === $currentMajor) ? ' active' : '';
-        $content .= '  <div class="' . escapeHtml($typesClass) . '" data-version="v' . escapeHtml((string)$mv) . "\">\n";
-        $content .= "    <div class=\"container-section--headed\">\n";
-        $content .= "      <div class=\"container-section-header\">Change Types</div>\n";
-        $content .= "      <div class=\"container-section-body\">\n";
-        $content .= "        <nav class=\"container-actions\" aria-label=\"Changelog sections\">\n";
+        $panelId = 'changelog-panel-v' . $mv;
+        $isActive = ($mv === $currentMajor) ? ' active' : '';
+        $content .= '  <div class="changelog-tabpanel' . $isActive . '" id="' . escapeHtml($panelId) . '" role="tabpanel">' . "\n";
+        $content .= "    <div class=\"container-sections\">\n";
+        $content .= "      <section class=\"panel panel--padded\">\n";
+        $content .= "        <h2>Build Snapshot</h2>\n";
+        $content .= "        <div class=\"container-actions\">\n";
+        $content .= '          <span class="chip color-pair-ink">Version ' . escapeHtml($displayVersion) . "</span>\n";
+        $content .= '          <span class="chip color-pair-stone">' . escapeHtml((string)$commitCount) . " commits</span>\n";
+        $content .= "        </div>\n";
+        $content .= "        <p class=\"body\">Generated from conventional commits and git tags during the site build.</p>\n";
+        $content .= "      </section>\n";
+
+        // Build Change Types nav for this major version
+        $content .= "      <section class=\"panel panel--padded\">\n";
+        $content .= "        <h2>Change Types</h2>\n";
+        $content .= "        <nav class=\"container-actions\" aria-label=\"Change log sections\">\n";
         foreach ($groupLabels as $groupKey => $groupLabel) {
             $items = array_filter($changeGroups[$groupKey] ?? [], fn($i) => $i['majorVersion'] === $mv);
             if (!$items) {
@@ -475,57 +481,7 @@ JS;
             $content .= '          <a class="chip color-pair-' . escapeHtml($chipColor) . '" href="#' . escapeHtml($sectionId) . '">' . escapeHtml($groupLabel) . "</a>\n";
         }
         $content .= "        </nav>\n";
-        $content .= "      </div>\n";
-        $content .= "    </div>\n";
-        $content .= "  </div>\n";
-    }
-
-    // Version list blocks — one per major version, listing every distinct
-    // version number that appears in the changelog for that major version.
-    foreach ($majorVersions as $mv) {
-        $versions = [];
-        foreach ($changeGroups as $items) {
-            foreach ($items as $item) {
-                if ($item['majorVersion'] === $mv) {
-                    $versions[$item['version']] = true;
-                }
-            }
-        }
-        $versionList = array_keys($versions);
-        usort($versionList, fn($a, $b) => version_compare($b, $a));
-
-        $versionsClass = 'changelog-versions changelog-versions-v' . $mv;
-        $versionsClass .= ($mv === $currentMajor) ? ' active' : '';
-        $content .= '  <div class="' . escapeHtml($versionsClass) . '" data-version="v' . escapeHtml((string)$mv) . "\">\n";
-        $content .= "    <div class=\"container-section--headed\">\n";
-        $content .= "      <div class=\"container-section-header\">Versions</div>\n";
-        $content .= "      <div class=\"container-section-body\">\n";
-        $content .= "        <ul class=\"list\">\n";
-        foreach ($versionList as $v) {
-            $content .= '          <li><a href="#' . escapeHtml($v) . '"><span class="caption">' . escapeHtml($v) . "</span></a></li>\n";
-        }
-        $content .= "        </ul>\n";
-        $content .= "      </div>\n";
-        $content .= "    </div>\n";
-        $content .= "  </div>\n";
-    }
-
-    foreach ($majorVersions as $mv) {
-        $panelId = 'changelog-panel-v' . $mv;
-        $isActive = ($mv === $currentMajor) ? ' active' : '';
-        $content .= '  <div class="tab-panel' . $isActive . '" id="' . escapeHtml($panelId) . '" role="tabpanel">' . "\n";
-        $content .= "    <div class=\"container-sections\">\n";
-        $content .= "      <section class=\"panel panel--padded\">\n";
-        $content .= "        <h3>Build Snapshot</h3>\n";
-        $content .= "        <div class=\"container-actions\">\n";
-        $content .= '          <span class="chip color-pair-ink">Version ' . escapeHtml($displayVersion) . "</span>\n";
-        $content .= '          <span class="chip color-pair-stone">' . escapeHtml((string)$commitCount) . " commits</span>\n";
-        $content .= "        </div>\n";
         $content .= "      </section>\n";
-
-        // Track which versions have already been anchored so only the first
-        // entry for each version gets an id that the sidebar can link to.
-        $anchoredVersions = [];
 
         foreach ($groupLabels as $groupKey => $groupLabel) {
             $items = array_filter($changeGroups[$groupKey] ?? [], fn($i) => $i['majorVersion'] === $mv);
@@ -535,22 +491,17 @@ JS;
             $sectionId = $groupKey . '-changes-v' . $mv;
 
             $content .= '      <section class="panel panel--padded" id="' . escapeHtml($sectionId) . "\">\n";
-            $content .= '        <h4>' . escapeHtml($groupLabel) . "</h4>\n";
+            $content .= '        <h3>' . escapeHtml($groupLabel) . "</h3>\n";
             $content .= "        <ul class=\"list\">\n";
             foreach (array_reverse($items) as $item) {
                 $chipColor = $groupChips[$groupKey] ?? 'ink';
-                $liId = '';
-                if (!isset($anchoredVersions[$item['version']])) {
-                    $liId = ' id="' . escapeHtml($item['version']) . '"';
-                    $anchoredVersions[$item['version']] = true;
-                }
-                $content .= '          <li' . $liId . ">\n";
+                $content .= "          <li>\n";
                 $content .= "            <div class=\"container-content\">\n";
                 $content .= "              <div class=\"container-actions\">\n";
                 $content .= '              <span class="chip color-pair-' . escapeHtml($chipColor) . '">' . escapeHtml($groupLabel) . "</span>\n";
                 $content .= '                <span class="caption">' . escapeHtml($item['version']) . ' - ' . escapeHtml($item['sha']) . ' - ' . escapeHtml($item['date']) . "</span>\n";
                 $content .= "              </div>\n";
-                $content .= '              <h5>' . escapeHtml(escapeTwigText($item['subject'])) . "</h5>\n";
+                $content .= '              <h4>' . escapeHtml(escapeTwigText($item['subject'])) . "</h4>\n";
                 if (!empty($item['description'])) {
                     $content .= "              <ul>\n";
                     if (is_array($item['description'])) {
@@ -574,6 +525,182 @@ JS;
     }
 
     $content .= "</div>\n";
+} elseif ($format === 'html') {
+    $groupLabels = [
+        'breaking' => 'Breaking changes',
+        'feature' => 'Features',
+        'fix' => 'Fixes',
+        'docs' => 'Documentation',
+        'refactor' => 'Refactors',
+        'test' => 'Tests',
+        'chore' => 'Maintenance',
+        'other' => 'Other changes',
+    ];
+    $groupChips = [
+        'breaking' => 'red',
+        'feature' => 'gold',
+        'fix' => 'sage',
+        'docs' => 'sky',
+        'refactor' => 'stone',
+        'test' => 'plum',
+        'chore' => 'olive',
+        'other' => 'ink',
+    ];
+
+    $htmlBody = '';
+    $htmlBody .= "<section class=\"panel panel--padded\">\n";
+    $htmlBody .= "  <h2>Build Snapshot</h2>\n";
+    $htmlBody .= "  <div class=\"container-actions\">\n";
+    $htmlBody .= '    <span class="chip color-pair-ink">Version ' . escapeHtml($displayVersion) . "</span>\n";
+    $htmlBody .= '    <span class="chip color-pair-stone">' . escapeHtml((string)$commitCount) . " commits</span>\n";
+    $htmlBody .= "  </div>\n";
+    $htmlBody .= "  <p class=\"body\">Generated from conventional commits and git tags during the site build.</p>\n";
+    $htmlBody .= "</section>\n";
+
+    // Collect unique versions and sort descending (newest first)
+    $versionMap = [];
+    foreach ($changeGroups as $items) {
+        foreach ($items as $item) {
+            $versionMap[$item['version']] = true;
+        }
+    }
+    $sortedVersions = array_keys($versionMap);
+    usort($sortedVersions, function (string $a, string $b): int {
+        $aParts = array_map('intval', explode('.', ltrim($a, 'vV')));
+        $bParts = array_map('intval', explode('.', ltrim($b, 'vV')));
+        for ($i = 0; $i < max(count($aParts), count($bParts)); $i++) {
+            $av = $aParts[$i] ?? 0;
+            $bv = $bParts[$i] ?? 0;
+            if ($av !== $bv) return $bv <=> $av;
+        }
+        return 0;
+    });
+
+    // Sidebar: Change Types (chips) + Versions (list)
+    $htmlSidebar = '';
+    $htmlSidebar .= "<div class=\"changelog-types\">\n";
+    $htmlSidebar .= "  <section class=\"container-section--headed\">\n";
+    $htmlSidebar .= "    <div class=\"container-section-header\">Change Types</div>\n";
+    $htmlSidebar .= "    <div class=\"container-section-body\">\n";
+    $htmlSidebar .= "      <nav class=\"container-actions\" aria-label=\"Changelog sections\">\n";
+    foreach ($groupLabels as $groupKey => $groupLabel) {
+        if (empty($changeGroups[$groupKey])) continue;
+        $chipColor = $groupChips[$groupKey] ?? 'ink';
+        $htmlSidebar .= '        <a class="chip color-pair-' . escapeHtml($chipColor) . '" href="#' . escapeHtml($groupKey) . '-changes">' . escapeHtml($groupLabel) . "</a>\n";
+    }
+    $htmlSidebar .= "      </nav>\n";
+    $htmlSidebar .= "    </div>\n";
+    $htmlSidebar .= "  </section>\n";
+    $htmlSidebar .= "</div>\n";
+
+    $htmlSidebar .= "<div class=\"changelog-versions\">\n";
+    $htmlSidebar .= "  <section class=\"container-section--headed\">\n";
+    $htmlSidebar .= "    <div class=\"container-section-header\">Versions</div>\n";
+    $htmlSidebar .= "    <div class=\"container-section-body\">\n";
+    $htmlSidebar .= "      <ul class=\"list\">\n";
+    foreach ($sortedVersions as $version) {
+        $htmlSidebar .= '        <li><a href="#' . escapeHtml($version) . '"><span class="caption">' . escapeHtml($version) . "</span></a></li>\n";
+    }
+    $htmlSidebar .= "      </ul>\n";
+    $htmlSidebar .= "    </div>\n";
+    $htmlSidebar .= "  </section>\n";
+    $htmlSidebar .= "</div>\n";
+
+    $anchoredVersions = [];
+    foreach ($groupLabels as $groupKey => $groupLabel) {
+        if (empty($changeGroups[$groupKey])) continue;
+        $sectionId = $groupKey . '-changes';
+        $chipColor = $groupChips[$groupKey] ?? 'ink';
+        $htmlBody .= '<section class="panel panel--padded" id="' . escapeHtml($sectionId) . '">' . "\n";
+        $htmlBody .= '  <h3>' . escapeHtml($groupLabel) . "</h3>\n";
+        $htmlBody .= "  <ul class=\"list\">\n";
+        foreach (array_reverse($changeGroups[$groupKey]) as $item) {
+            $liId = !isset($anchoredVersions[$item['version']]) ? ' id="' . escapeHtml($item['version']) . '"' : '';
+            if ($liId !== '') $anchoredVersions[$item['version']] = true;
+            $htmlBody .= '    <li' . $liId . ">\n";
+            $htmlBody .= "      <div class=\"container-actions\">\n";
+            $htmlBody .= '        <span class="chip color-pair-' . escapeHtml($chipColor) . '">' . escapeHtml($groupLabel) . "</span>\n";
+            $htmlBody .= '        <span class="caption">' . escapeHtml($item['version']) . ' - ' . escapeHtml($item['sha']) . ' - ' . escapeHtml($item['date']) . "</span>\n";
+            $htmlBody .= "      </div>\n";
+            $htmlBody .= '      <h4>' . escapeHtml(escapeTwigText($item['subject'])) . "</h4>\n";
+            if (!empty($item['description'])) {
+                $htmlBody .= "      <ul>\n";
+                if (is_array($item['description'])) {
+                    foreach ($item['description'] as $bullet) {
+                        $htmlBody .= '        <li>' . escapeHtml(escapeTwigText($bullet)) . "</li>\n";
+                    }
+                } else {
+                    $htmlBody .= '        <li>' . escapeHtml(escapeTwigText($item['description'])) . "</li>\n";
+                }
+                $htmlBody .= "      </ul>\n";
+            }
+            $htmlBody .= "    </li>\n";
+        }
+        $htmlBody .= "  </ul>\n";
+        $htmlBody .= "</section>\n";
+    }
+
+    $content = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - Box of Dragons</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <script>(function(){var h=location.hostname;var l=h==='localhost'||h==='127.0.0.1'||h.indexOf('.ddev.site')!==-1;var b=(l?'http://localhost:4000':'https://misssponto.me.uk');document.write('<link rel="stylesheet" href="'+b+'/css/shared.css">');})();</script>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+    <div id="global-bar" data-active="box-of-dragons"></div>
+    <script src="https://misssponto.me.uk/js/global-bar.js" defer></script>
+    <header class="site-header">
+        <div class="shell header-row">
+            <h1 class="brand">Box of Dragons</h1>
+            <nav class="main-nav" aria-label="Main navigation">
+                <div class="main-nav-item"><a class="main-nav-link" href="/">Projects</a></div>
+                <div class="main-nav-item"><a class="main-nav-link active" href="/changelog.html">Changelog</a></div>
+            </nav>
+            <div class="header-project-links" aria-label="Project links">
+                <a class="project-link" href="https://github.com/Box-of-Dragons/CraftCms" target="_blank" rel="noopener noreferrer" aria-label="Open the project on GitHub">GitHub</a>
+                <a class="project-link" href="https://gitlab.com/structured-chaos/craftcms" target="_blank" rel="noopener noreferrer" aria-label="Open the project on GitLab">GitLab</a>
+            </div>
+        </div>
+    </header>
+    <section class="page-subheader">
+        <div class="shell">
+            <div class="page-subheader-inner">
+                <h1>Changelog</h1>
+            </div>
+        </div>
+    </section>
+    <main class="shell page-layout">
+        <div class="content-main">
+$htmlBody
+        </div>
+        <aside class="sidebar sidebar--sticky">
+            <div class="container-sections">
+                <section class="container-section--headed">
+                    <div class="container-section-header">About this log</div>
+                    <div class="container-section-body">
+                        <div class="body">This page is generated from conventional commits and git tags during the build step. The latest build snapshot, production version, commit count, and recent commits grouped into simple readable sections.</div>
+                    </div>
+                </section>
+$htmlSidebar
+            </div>
+        </aside>
+    </main>
+    <footer class="site-footer">
+        <div class="shell footer-row">
+            <div>Box of Dragons</div>
+        </div>
+    </footer>
+</body>
+</html>
+HTML;
+
 } else {
     $namespace = 'Mudblazer.Build';
     $content = <<<CS
