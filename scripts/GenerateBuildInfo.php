@@ -664,8 +664,7 @@ JS;
                 <div class="main-nav-item"><a class="main-nav-link active" href="/changelog.html">Changelog</a></div>
             </nav>
             <div class="header-project-links" aria-label="Project links">
-                <a class="project-link" href="https://github.com/Box-of-Dragons/CraftCms" target="_blank" rel="noopener noreferrer" aria-label="Open the project on GitHub">GitHub</a>
-                <a class="project-link" href="https://gitlab.com/structured-chaos/craftcms" target="_blank" rel="noopener noreferrer" aria-label="Open the project on GitLab">GitLab</a>
+                <a class="project-link" href="https://github.com/Box-of-Dragons/BoxOfDragons" target="_blank" rel="noopener noreferrer" aria-label="Open the project on GitHub">GitHub</a>
             </div>
         </div>
     </header>

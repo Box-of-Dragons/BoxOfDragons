@@ -36,5 +36,6 @@ jobs:
 
             echo "Generating build info..."
             php scripts/GenerateBuildInfo.php --root=. --output=web/js/buildInfo.js --format=js
+            php scripts/GenerateBuildInfo.php --root=. --output=web/changelog.html --format=html
 
             echo "Deploy completed."
