@@ -31,13 +31,15 @@ function expand_project_types(array $selected, array $projectTypes): array {
 
 $filters = [
     'category' => param_array('category'),
+    'project_family' => param_array('projectFamily'),
     'project_type' => param_array('projectType'),
     'year' => param_array('year'),
 ];
 
 // Sidebar data (needed for parent expansion)
-$postCategories = get_categories(1); // group 1 = postCategories
-$projectTypes = get_categories(2);   // group 2 = projectTypes
+$postCategories = get_categories_by_group_handle('postCategories');
+$projectFamilies = get_categories_by_group_handle('projectFamilies');
+$projectTypes = get_categories_by_group_handle('projectTypes');
 $years = get_post_years();
 
 $queryFilters = $filters;
@@ -46,7 +48,10 @@ $queryFilters['project_type'] = expand_project_types($filters['project_type'], $
 $page = max(1, (int)($_GET['page'] ?? 1));
 $result = get_posts($queryFilters, $page, 12);
 
-$hasFilters = !empty($filters['category']) || !empty($filters['project_type']) || !empty($filters['year']);
+$hasFilters = !empty($filters['category'])
+    || !empty($filters['project_family'])
+    || !empty($filters['project_type'])
+    || !empty($filters['year']);
 
 ob_start();
 ?>
@@ -75,8 +80,11 @@ ob_start();
                                 <?php endif; ?>
                             </a>
                             <div class="panel-body">
-                                <?php if (!empty($post['projectTypes']) || !empty($post['designSource'])): ?>
+                                <?php if (!empty($post['projectFamily']) || !empty($post['projectTypes']) || !empty($post['designSource'])): ?>
                                     <div class="panel-chips">
+                                        <?php foreach ($post['projectFamily'] as $family): ?>
+                                            <a class="chip color-pair-<?= e($family['colourPair']) ?>" href="/posts?projectFamily[]=<?= e($family['slug']) ?>"><?= e($family['title']) ?></a>
+                                        <?php endforeach; ?>
                                         <?php if (!empty($post['projectTypes'])): ?>
                                             <?php
                                                 $ptChip = $post['projectTypes'][0];
@@ -143,6 +151,25 @@ ob_start();
                                         <label>
                                             <input type="checkbox" name="category[]" value="<?= e($cat['slug']) ?>" <?= $catChecked ? 'checked' : '' ?> onchange="this.form.submit()">
                                             <?= e($cat['title']) ?>
+                                        </label>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </section>
+                    <?php endif; ?>
+
+                    <?php if (!empty($projectFamilies)): ?>
+                    <section class="container-section--headed">
+                        <div class="container-section-header">Project Family</div>
+                        <div class="container-section-body">
+                            <ul class="list">
+                                <?php foreach ($projectFamilies as $family): ?>
+                                    <?php $familyChecked = in_array($family['slug'], $filters['project_family']); ?>
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" name="projectFamily[]" value="<?= e($family['slug']) ?>" <?= $familyChecked ? 'checked' : '' ?> onchange="this.form.submit()">
+                                            <?= e($family['title']) ?>
                                         </label>
                                     </li>
                                 <?php endforeach; ?>

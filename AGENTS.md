@@ -101,15 +101,25 @@ The VPS auto-deploys when GitHub receives a push to `master`.
 4. Runs `php scripts/GenerateBuildInfo.php --root=. --output=web/js/buildInfo.js --format=js`
 5. Runs `php scripts/GenerateBuildInfo.php --root=. --output=web/changelog.html --format=html`
 
-nginx serves the `web/` directory directly as the docroot via PHP-FPM. No
+nginx serves the deployed `web/` directory directly as the docroot via PHP-FPM. No
 build step, no Composer install, no app process to reload.
+
+Production SSH/deploy details:
+
+- SSH user: `root`
+- Repo working tree: `/home/boxofdragons/htdocs/BoxOfDragons`
+- Public docroot: `/home/boxofdragons/htdocs/www.boxofdragons.misssponto.me.uk/web`
+- Public URL: `https://boxofdragons.misssponto.me.uk/`
+
+Content-only database seeding, such as adding archive project entries or taxonomy terms, should be done directly on the VPS database via SSH. Do not add one-off seed scripts to git unless they are intended to be permanent migration tooling.
 
 ### Manual deploy (fallback)
 
 SSH into the VPS and run:
 
 ```bash
-cd /home/boxofdragons/htdocs/www.boxofdragons.misssponto.me.uk
+ssh root@77.68.76.203
+cd /home/boxofdragons/htdocs/BoxOfDragons
 git fetch origin master
 git reset --hard origin/master
 php scripts/GenerateBuildInfo.php --root=. --output=web/js/buildInfo.js --format=js

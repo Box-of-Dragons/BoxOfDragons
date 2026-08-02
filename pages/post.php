@@ -53,8 +53,11 @@ ob_start();
                                     <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
-                            <?php if (!empty($post['projectTypes'])): ?>
+                            <?php if (!empty($post['projectFamily']) || !empty($post['projectTypes'])): ?>
                                 <div class="panel-chips">
+                                    <?php foreach ($post['projectFamily'] as $family): ?>
+                                        <a class="chip color-pair-<?= e($family['colourPair']) ?>" href="/posts?projectFamily[]=<?= e($family['slug']) ?>"><?= e($family['title']) ?></a>
+                                    <?php endforeach; ?>
                                     <?php foreach ($post['projectTypes'] as $pt): ?>
                                         <a class="chip color-pair-<?= e($pt['colourPair']) ?>" href="/posts?projectType[]=<?= e($pt['slug']) ?>"><?= e($pt['title']) ?></a>
                                     <?php endforeach; ?>
@@ -88,6 +91,19 @@ ob_start();
                         <ul class="list">
                             <?php foreach ($displayCategories as $cat): ?>
                                 <li><a href="/posts?category[]=<?= e($cat['slug']) ?>"><?= e($cat['title']) ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </section>
+                <?php endif; ?>
+
+                <?php if (!empty($post['projectFamily'])): ?>
+                <section class="container-section--headed">
+                    <div class="container-section-header">Project Family</div>
+                    <div class="container-section-body">
+                        <ul class="list">
+                            <?php foreach ($post['projectFamily'] as $family): ?>
+                                <li><a href="/posts?projectFamily[]=<?= e($family['slug']) ?>"><?= e($family['title']) ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>

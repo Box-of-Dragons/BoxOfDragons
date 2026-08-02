@@ -8,7 +8,7 @@ The site is a stripped-down PHP application that queries the existing Craft CMS 
 
 ### Crochet & fibre
 
-Garments, accessories, and household items worked up from published patterns and my own drafts. Entries cover yarn choices, construction notes, and any modifications made along the way. The archive is filterable by project type, category, tag, and year — handy when I want to look back at everything I made in a particular season or with a particular technique.
+Garments, accessories, and household items worked up from published patterns and my own drafts. Entries cover yarn choices, construction notes, and any modifications made along the way. The archive is filterable by project family, project type, category, tag, and year — handy when I want to look back at everything I made in a particular season or with a particular technique.
 
 ### Sewing & textiles
 
@@ -27,6 +27,8 @@ Software I have built because I needed it. Development on these tools is documen
 The front end is plain PHP with PDO queries against the existing MySQL database (originally created by Craft CMS). A single front controller (`web/index.php`) routes requests to page files in `pages/`, which use library functions in `lib/` for database access and rendering. Archive filtering is handled server-side via PDO query parameters.
 
 Most of the development has been done with AI coding tools in the loop. The agent notes that shape how those sessions run are in `AGENTS.md`. The site is hosted on a VPS and deploys automatically when commits land on the master branch via a GitHub webhook.
+
+Production deploy runs from `/home/boxofdragons/htdocs/BoxOfDragons`; the public document root is `/home/boxofdragons/htdocs/www.boxofdragons.misssponto.me.uk/web`. VPS maintenance is done over SSH as `root`.
 
 ## Repository layout
 

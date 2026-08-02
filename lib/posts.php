@@ -86,6 +86,23 @@ function get_posts(array $filters = [], int $page = 1, int $per_page = 12): arra
         $params = array_merge($params, $filters['project_type']);
     }
 
+    if (!empty($filters['project_family'])) {
+        $familyFieldId = field_id_for_handle('projectFamily');
+        if ($familyFieldId) {
+            $placeholders = implode(',', array_fill(0, count($filters['project_family']), '?'));
+            $where[] = "EXISTS (
+                SELECT 1 FROM relations r
+                JOIN categories c ON c.id = r.targetId
+                JOIN elements ce ON ce.id = c.id
+                JOIN elements_sites ces ON ces.elementId = c.id
+                WHERE r.sourceId = en.id AND r.fieldId = {$familyFieldId}
+                  AND ce.dateDeleted IS NULL
+                  AND ces.slug IN ({$placeholders})
+            )";
+            $params = array_merge($params, $filters['project_family']);
+        }
+    }
+
     if (!empty($filters['year'])) {
         $placeholders = implode(',', array_fill(0, count($filters['year']), '?'));
         $where[] = "YEAR(en.postDate) IN ({$placeholders})";
@@ -150,6 +167,12 @@ function get_categories(int $groupId): array {
     $stmt = db()->prepare($sql);
     $stmt->execute([$groupId]);
     return array_map('normalize_category', $stmt->fetchAll());
+}
+
+/** Get all categories in a group by handle. */
+function get_categories_by_group_handle(string $handle): array {
+    $groupId = category_group_id_for_handle($handle);
+    return $groupId ? get_categories($groupId) : [];
 }
 
 /** Get all distinct years that have posts, descending. */
@@ -249,6 +272,36 @@ function field_id_for_handle(string $handle): ?int {
     return $cache[$handle];
 }
 
+/** Get the category group id for a handle. */
+function category_group_id_for_handle(string $handle): ?int {
+    static $cache = [];
+    if (isset($cache[$handle])) return $cache[$handle];
+
+    try {
+        $tableExists = db()->query("SHOW TABLES LIKE 'categorygroups'")->fetchColumn();
+        if ($tableExists) {
+            $stmt = db()->prepare("SELECT id FROM categorygroups WHERE handle = ? LIMIT 1");
+            $stmt->execute([$handle]);
+            $id = $stmt->fetchColumn();
+            if ($id) {
+                $cache[$handle] = (int)$id;
+                return $cache[$handle];
+            }
+        }
+    } catch (PDOException $e) {
+        // Fall back to the stable group ids in the trimmed public database.
+    }
+
+    $knownGroups = [
+        'postCategories' => 1,
+        'projectTypes' => 2,
+        'designSources' => 3,
+        'projectFamilies' => 4,
+    ];
+    $cache[$handle] = $knownGroups[$handle] ?? null;
+    return $cache[$handle];
+}
+
 /** Convert a raw DB row (with JSON content) into a hydrated post array. */
 function hydrate_post(array $row): array {
     $content = json_decode($row['content'] ?? '{}', true) ?: [];
@@ -311,6 +364,7 @@ function hydrate_post(array $row): array {
         'galleryImages' => get_post_gallery_images((int)$row['id']),
         'categories' => get_post_categories((int)$row['id'], 'postCategories'),
         'projectTypes' => get_post_categories((int)$row['id'], 'projectTypes'),
+        'projectFamily' => get_post_categories((int)$row['id'], 'projectFamily'),
         'designSource' => (function() use ($row) {
             $cats = get_post_categories((int)$row['id'], 'designSource');
             return $cats[0] ?? null;
