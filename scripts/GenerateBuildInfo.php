@@ -691,11 +691,9 @@ $htmlSidebar
             </div>
         </aside>
     </main>
-    <footer class="site-footer">
-        <div class="shell footer-row">
-            <div>Box of Dragons</div>
-        </div>
-    </footer>
+    <script>window.SITE_FOOTER = { label: 'Box of Dragons', buildInfoSrc: '/js/buildInfo.js' };</script>
+    <div id="site-footer"></div>
+    <script src="https://misssponto.me.uk/js/site-footer.js" defer></script>
 </body>
 </html>
 HTML;

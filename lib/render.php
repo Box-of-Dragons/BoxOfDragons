@@ -85,11 +85,13 @@ function render_page_subheader(string $title): string {
 
 /** Render the site footer. */
 function render_site_footer(): string {
-    return '<footer class="site-footer">'
-        . '<div class="shell footer-row">'
-        . '<div>Box of Dragons</div>'
-        . '</div>'
-        . '</footer>';
+    $base = shared_assets_base();
+    return '<script>window.SITE_FOOTER = {'
+        . "label: 'Box of Dragons', "
+        . "buildInfoSrc: '/js/buildInfo.js'"
+        . '};</script>'
+        . '<div id="site-footer"></div>'
+        . '<script src="' . e($base) . '/js/site-footer.js" defer></script>';
 }
 
 /** GitHub icon SVG. */
