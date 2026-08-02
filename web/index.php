@@ -16,6 +16,7 @@ $root = dirname(__DIR__);
 require $root . '/lib/config.php';
 require $root . '/lib/db.php';
 require $root . '/lib/posts.php';
+require $root . '/lib/admin.php';
 require $root . '/lib/render.php';
 
 load_env($root . '/.env');
@@ -28,6 +29,11 @@ if ($path === '') $path = '/';
 // Route
 if ($path === '/' || $path === '/posts') {
     require $root . '/pages/posts.php';
+    exit;
+}
+
+if ($path === '/admin') {
+    require $root . '/pages/admin.php';
     exit;
 }
 

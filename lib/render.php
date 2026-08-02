@@ -41,6 +41,7 @@ function render_site_header(string $currentPath = '/'): string {
     $nav = [
         ['label' => 'Projects', 'url' => '/'],
         ['label' => 'Changelog', 'url' => '/changelog.html'],
+        ['label' => 'Admin', 'url' => '/admin'],
     ];
 
     $navHtml = '';

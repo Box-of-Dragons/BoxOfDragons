@@ -34,3 +34,24 @@
     font-size: 0.85em;
     word-break: break-all;
 }
+
+textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    font: inherit;
+    resize: vertical;
+}
+
+select[multiple] {
+    width: 100%;
+    min-height: 120px;
+}
+
+td form,
+.list form {
+    display: inline-block;
+    margin: 0;
+}
