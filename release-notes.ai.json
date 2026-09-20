@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "notes": {
+    "1602b12d6d979f6af5236d75ed89fb3f4f6a1df6": {
+      "title": "Replace Craft CMS with a lightweight PHP site",
+      "details": [
+        "Site now runs on plain PHP instead of Craft CMS, using direct database queries."
+      ]
+    },
+    "898d341782537a967ce9824ffb46b9f84a528ca8": {
+      "title": "Fix asset paths for posts",
+      "details": [
+        "Correctly loads images and galleries for blog posts."
+      ]
+    },
+    "5bfa7df3bfb851985091ece8f0beb95cdf04930e": {
+      "title": "Ensure build information is generated after deployment",
+      "details": [
+        "Version and commit hash are available in the site after each deploy."
+      ]
+    },
+    "d16dfc9225bd41aa3c6dbc6aa75c993128208496": {
+      "title": "Keep changelog up to date automatically",
+      "details": [
+        "Changelog is regenerated on each push and outdated links are fixed."
+      ]
+    },
+    "a17465f95c28ffe9da769197b33f3e759b93ce64": {
+      "title": "Update documentation for the new PHP site",
+      "details": [
+        "Guides reflect the stripped‑PHP architecture and updated repository layout."
+      ]
+    },
+    "7b3d71c40d1c3d8e629854f6496163f0f1a7bd77": {
+      "title": "Fix asset path retrieval using direct field",
+      "details": [
+        "Uses the asset’s path column instead of a separate join, improving reliability."
+      ]
+    },
+    "a3636741f0673a730d7c36e5521acc486053f26d": {
+      "title": "Rename local development project to BoxOfDragons",
+      "details": [
+        "DDEV environment now uses boxofdragons.ddev.site matching the repo name."
+      ]
+    },
+    "3961e85fac163d129dea45bddf07e6510c627fb0": {
+      "title": "Show project family taxonomy on the site",
+      "details": [
+        "Visitors can browse projects by their family grouping."
+      ]
+    },
+    "ead60164eade05b2352634de28e9624dea9256a8": {
+      "title": "Use a shared footer across the site",
+      "details": [
+        "Footer content is now consistent on all pages."
+      ]
+    },
+    "3f5e893647b563f379a8f5b0695f9ab53eb2c09c": {
+      "title": "Add content management page in the admin area",
+      "details": [
+        "Admins can create and edit content from a dedicated management page."
+      ]
+    },
+    "55b39509aab5b9de7225b4b6320546059d15bb6d": {
+      "title": "Remove admin link from site navigation for visitors",
+      "details": [
+        "Site navigation no longer shows an admin link to non‑logged‑in users."
+      ]
+    },
+    "935251d88c17a2aa1e96eb000f02de7e83b1bc4d": {
+      "title": "Simplify version numbering to vX.Y.Z",
+      "details": [
+        "Releases now use a single‑bump version scheme, dropping the fourth revision number."
+      ]
+    },
+    "016736fb8a7a86ccee967a10fa4fae424f2482a8": {
+      "title": "Delegate deployment and release to shared workflows",
+      "details": [
+        "CI now calls reusable family workflows for deploy and release processes."
+      ]
+    },
+    "d719fdf968a47237cbd2939c8b58661bee53e8f1": {
+      "title": "Run VPS deployment as part of the manual release workflow",
+      "details": [
+        "Releasing a version automatically triggers deployment to the VPS."
+      ]
+    },
+    "6280f1fab05854ac7ffc743fe05be31e6eba486c": {
+      "title": "Increment patch version for every non‑feature commit",
+      "details": [
+        "Patch number increases on each commit that isn’t a new feature, keeping versions granular."
+      ]
+    },
+    "74d4488cd8b61f5bb1786cdb5f56e13eeac2aef6": {
+      "title": "Protect the release branch and synchronize via pull requests",
+      "details": [
+        "Release branch is protected; development stays in sync through release‑targeted PRs."
+      ]
+    },
+    "d122268839fe0d8b6550434e89b490f4fbf3f3e8": {
+      "title": "Grant write permissions to release workflows",
+      "details": [
+        "Release jobs can now push tags and update repository contents as needed."
+      ]
+    },
+    "9bb01f7e84a897db542f353bd08d3a525be359ab": {
+      "title": "Synchronize release branch and deploy after release",
+      "details": [
+        "CI syncs the release branch with shared workflows and runs deployment post‑release."
+      ]
+    },
+    "f56df9284108a644bb1b8ff5896dcb884b5782c8": {
+      "title": "Move deployment inside the shared release workflow",
+      "details": [
+        "Deployment step now lives within the shared release workflow, simplifying CI."
+      ]
+    },
+    "da0b46f39f05aca5ea239f45ef1a80d527e2daec": {
+      "title": "Grant write access to pull‑requests in release jobs",
+      "details": [
+        "Release jobs can create or update pull requests when needed."
+      ]
+    },
+    "b9796810a28837520d56c1836f515da7207e599f": {
+      "title": "Fix commit SHA formatting to match version tags",
+      "details": [
+        "Corrects trailing newlines in SHA strings so version tags align with commit logs."
+      ]
+    }
+  },
+  "updatedAt": "2026-09-20T21:44:34.610Z"
+}
