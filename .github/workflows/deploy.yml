@@ -1,9 +1,9 @@
 name: Deploy to Production
 
+# Manual deploy-only fallback. Normal deploys happen as part of the Release
+# workflow — see StructuredChaos docs/git-rules.md.
+
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
 
 jobs:

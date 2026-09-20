@@ -89,20 +89,11 @@ Common scopes used in this project:
 
 This repo uses `ui` (not `style`) for the no-logic-change styling commit type. Scopes are not enforced — use whatever best describes the area of change.
 
-## VPS Deploy via GitHub Webhook
+## Deploy
 
-The VPS auto-deploys when GitHub receives a push to `master`.
+Deploys run as part of the manual **Release** workflow (Actions → Release → Run workflow): it tags the release, creates the GitHub Release, then SSHes to the VPS — `git fetch` + `git reset --hard origin/master`, then `scripts/deploy.sh` (regenerates `web/js/buildInfo.js` + `web/changelog.html` via `scripts/GenerateBuildInfo.php`). nginx serves `web/` via PHP-FPM. `deploy.yml` remains as a manual deploy-only fallback (no versioning).
 
-`web/webhook.php` is a PHP webhook listener that:
-
-1. Verifies the GitHub HMAC-SHA256 signature using `GITHUB_WEBHOOK_SECRET` from `.env`
-2. Checks that the push is to `refs/heads/master`
-3. Runs `git fetch origin master` + `git reset --hard origin/master`
-4. Runs `php scripts/GenerateBuildInfo.php --root=. --output=web/js/buildInfo.js --format=js`
-5. Runs `php scripts/GenerateBuildInfo.php --root=. --output=web/changelog.html --format=html`
-
-nginx serves the deployed `web/` directory directly as the docroot via PHP-FPM. No
-build step, no Composer install, no app process to reload.
+Pushes no longer deploy — the GitHub webhook was removed. `web/webhook.php` is legacy and can be removed.
 
 Production SSH/deploy details:
 
@@ -122,6 +113,5 @@ ssh root@77.68.76.203
 cd /home/boxofdragons/htdocs/BoxOfDragons
 git fetch origin master
 git reset --hard origin/master
-php scripts/GenerateBuildInfo.php --root=. --output=web/js/buildInfo.js --format=js
-php scripts/GenerateBuildInfo.php --root=. --output=web/changelog.html --format=html
+bash scripts/deploy.sh
 ```
