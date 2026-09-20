@@ -140,10 +140,7 @@ function getCommitType(string $subject, string $body = ''): string {
     if (preg_match('/^feat(\([^)]+\))?!?:/', $subject)) {
         return 'minor';
     }
-    if (preg_match('/^fix(\([^)]+\))?!?:/', $subject)) {
-        return 'patch';
-    }
-    return 'none';
+    return 'patch';
 }
 
 function getChangelogGroup(string $subject, string $body = ''): string {
