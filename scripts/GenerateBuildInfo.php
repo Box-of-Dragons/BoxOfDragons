@@ -5,7 +5,7 @@
  * Mirrors the logic of GenerateBuildInfo.ps1:
  *   - Reads git tags and commit history
  *   - Derives a version from conventional commit messages (feat:, fix:, BREAKING CHANGE)
- *   - Non-feat/fix commits increment the revision (4th number)
+ *   - The single highest bump since the latest tag is applied once (vX.Y.Z)
  *   - Outputs a JS file (window.BUILD_INFO) or C# class
  *
  * Usage:
@@ -58,16 +58,29 @@ function git(string $root, string ...$args): array {
     if ($gitBin === null) {
         $gitBin = findGit();
     }
-    $escapedRoot = escapeshellarg($root);
-    $escapedArgs = array_map('escapeshellarg', $args);
-    $cmd = "$gitBin -C $escapedRoot " . implode(' ', $escapedArgs) . ' 2>&1';
-    $output = [];
-    $exitCode = 0;
-    exec($cmd, $output, $exitCode);
-    if ($exitCode !== 0) {
-        throw new RuntimeException("git " . implode(' ', $args) . " failed (exit $exitCode): " . implode("\n", $output));
+    // Array-form command bypasses the shell entirely, so %-placeholders in
+    // --pretty=format:... survive cmd.exe on Windows (escapeshellarg would
+    // let cmd treat %X% pairs as environment variables and eat them).
+    $command = array_merge([$gitBin, '-C', $root], $args);
+    $process = proc_open(
+        $command,
+        [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+        $pipes,
+    );
+    if (!is_resource($process)) {
+        throw new RuntimeException('Failed to start git process');
     }
-    return $output;
+    fclose($pipes[0]);
+    $stdout = stream_get_contents($pipes[1]);
+    $stderr = stream_get_contents($pipes[2]);
+    fclose($pipes[1]);
+    fclose($pipes[2]);
+    $exitCode = proc_close($process);
+    if ($exitCode !== 0) {
+        throw new RuntimeException("git " . implode(' ', $args) . " failed (exit $exitCode): " . trim((string)$stderr));
+    }
+    $stdout = (string)$stdout;
+    return $stdout === '' ? [] : explode("\n", rtrim($stdout, "\n"));
 }
 
 function parseVersion(string $tagName): array {
@@ -76,14 +89,24 @@ function parseVersion(string $tagName): array {
     if (count($parts) < 3) {
         throw new RuntimeException("Tag '$tagName' is not a valid version");
     }
-    return array_map('intval', $parts);
+    return array_map('intval', array_slice($parts, 0, 3));
 }
 
-function formatVersion(array $version, int $revision = 0): string {
-    if ($revision > 0) {
-        return sprintf('v%d.%d.%d.%d', $version[0], $version[1], $version[2], $revision);
-    }
+function formatVersion(array $version): string {
     return sprintf('v%d.%d.%d', $version[0], $version[1], $version[2]);
+}
+
+function bumpVersion(array $version, string $bump): array {
+    switch ($bump) {
+        case 'major':
+            return [$version[0] + 1, 0, 0];
+        case 'minor':
+            return [$version[0], $version[1] + 1, 0];
+        case 'patch':
+            return [$version[0], $version[1], $version[2] + 1];
+        default:
+            return $version;
+    }
 }
 
 function tryParseTaggedVersion(string $tagName): ?array {
@@ -92,33 +115,39 @@ function tryParseTaggedVersion(string $tagName): ?array {
     if (count($parts) < 3) {
         return null;
     }
-    foreach ($parts as $p) {
+    foreach (array_slice($parts, 0, 3) as $p) {
         if (!ctype_digit($p)) {
             return null;
         }
     }
-    $version = array_map('intval', $parts);
-    if (count($version) === 3) {
-        $version[] = 0;
-    }
-    return $version;
+    return array_map('intval', array_slice($parts, 0, 3));
 }
 
-function getCommitType(string $subject): string {
-    if (preg_match('/BREAKING CHANGE|!:/', $subject)) {
+// Breaking is signalled by `!` in the subject or a `BREAKING CHANGE:` /
+// `BREAKING-CHANGE:` footer. The footer check is line-anchored so prose that
+// merely mentions the convention doesn't count as breaking.
+function isBreakingChange(string $subject, string $body = ''): bool {
+    if (strpos($subject, '!:') !== false) {
+        return true;
+    }
+    return (bool)preg_match('/^BREAKING[ -]CHANGE:/m', $body);
+}
+
+function getCommitType(string $subject, string $body = ''): string {
+    if (isBreakingChange($subject, $body)) {
         return 'major';
     }
-    if (preg_match('/^feat(\([^)]+\))?:/', $subject)) {
+    if (preg_match('/^feat(\([^)]+\))?!?:/', $subject)) {
         return 'minor';
     }
-    if (preg_match('/^fix(\([^)]+\))?:/', $subject)) {
+    if (preg_match('/^fix(\([^)]+\))?!?:/', $subject)) {
         return 'patch';
     }
     return 'none';
 }
 
-function getChangelogGroup(string $subject): string {
-    if (preg_match('/BREAKING CHANGE|!:/', $subject)) {
+function getChangelogGroup(string $subject, string $body = ''): string {
+    if (isBreakingChange($subject, $body)) {
         return 'breaking';
     }
     if (preg_match('/^feat(\([^)]+\))?:/', $subject)) {
@@ -290,23 +319,67 @@ function escapeTwigText(string $value): string {
 $commitCountOutput = git($root, 'rev-list', '--count', 'HEAD');
 $commitCount = (int)trim($commitCountOutput[0] ?? '0');
 
-// Tags with object hashes
-$tagOutput = git($root, 'tag', '--format=%(objectname)|%(refname:short)');
+// Tags mapped to the commit they point at. %(*objectname) peels annotated
+// tags to their commit; lightweight tags use %(objectname).
+$tagOutput = git($root, 'tag', '--format=%(objectname)|%(*objectname)|%(refname:short)');
 $taggedVersions = [];
 foreach ($tagOutput as $line) {
     if (trim($line) === '') continue;
-    $parts = explode('|', $line, 2);
-    if (count($parts) !== 2) continue;
-    $version = tryParseTaggedVersion($parts[1]);
+    $parts = explode('|', $line, 3);
+    if (count($parts) !== 3) continue;
+    $version = tryParseTaggedVersion($parts[2]);
     if ($version !== null) {
-        $taggedVersions[$parts[0]] = $version;
+        $commitSha = $parts[1] !== '' ? $parts[1] : $parts[0];
+        $taggedVersions[$commitSha] = $version;
     }
 }
 
 // Commit log (oldest first)
 $logOutput = git($root, 'log', '--pretty=format:%H%x1f%ad%x1f%s%x1f%B%x1e', '--date=short', '--reverse', '--', '.');
-$resolvedVersion = [1, 0, 0, 0];
-$revision = 0;
+$commits = [];
+foreach (preg_split('/\x1e/', implode("\n", $logOutput)) ?: [] as $record) {
+    if (trim($record) === '') {
+        continue;
+    }
+    $parts = explode("\x1f", $record, 4);
+    if (count($parts) !== 4) {
+        continue;
+    }
+    $commits[] = [
+        'sha' => $parts[0],
+        'date' => $parts[1],
+        'subject' => trim($parts[2]),
+        'body' => $parts[3],
+    ];
+}
+
+// Split history into release segments: each segment ends at a tagged commit
+// and is labelled with that tag's version. The open tail segment (commits
+// after the latest tag) gets the pending version — the latest tag plus the
+// single highest pending bump, applied once.
+$segments = [];
+$tailCommits = [];
+foreach ($commits as $commit) {
+    $tailCommits[] = $commit;
+    if (isset($taggedVersions[$commit['sha']])) {
+        $segments[] = ['version' => $taggedVersions[$commit['sha']], 'commits' => $tailCommits];
+        $tailCommits = [];
+    }
+}
+
+$lastTagVersion = !empty($segments) ? $segments[count($segments) - 1]['version'] : null;
+$bumpRank = ['none' => 0, 'patch' => 1, 'minor' => 2, 'major' => 3];
+$pendingBump = 'none';
+foreach ($tailCommits as $commit) {
+    $bump = getCommitType($commit['subject'], $commit['body']);
+    if ($bumpRank[$bump] > $bumpRank[$pendingBump]) {
+        $pendingBump = $bump;
+    }
+}
+// With no prior tag the pending first release is always v0.1.0.
+$tailVersion = $lastTagVersion !== null ? bumpVersion($lastTagVersion, $pendingBump) : [0, 1, 0];
+$segments[] = ['version' => $tailVersion, 'commits' => $tailCommits];
+
 $changeGroups = [
     'breaking' => [],
     'feature' => [],
@@ -318,57 +391,22 @@ $changeGroups = [
     'other' => [],
 ];
 
-foreach (preg_split('/\x1e/', implode("\n", $logOutput)) ?: [] as $record) {
-    if (trim($record) === '') {
-        continue;
+foreach ($segments as $segment) {
+    $segmentVersion = formatVersion($segment['version']);
+    foreach ($segment['commits'] as $commit) {
+        $group = getChangelogGroup($commit['subject'], $commit['body']);
+        $changeGroups[$group][] = [
+            'version' => $segmentVersion,
+            'majorVersion' => $segment['version'][0],
+            'sha' => substr($commit['sha'], 0, 7),
+            'date' => $commit['date'],
+            'subject' => humanizeCommitSubject($commit['subject']),
+            'description' => cleanCommitDescription($commit['subject'], $commit['body']),
+        ];
     }
-    $parts = explode("\x1f", $record, 4);
-    if (count($parts) !== 4) {
-        continue;
-    }
-
-    [$sha, $date, $subject, $body] = $parts;
-
-    if (isset($taggedVersions[$sha])) {
-        $resolvedVersion = $taggedVersions[$sha];
-        if (count($resolvedVersion) < 4) {
-            $resolvedVersion[] = 0;
-        }
-        $revision = 0;
-        continue;
-    }
-
-    $commitType = getCommitType($subject);
-    switch ($commitType) {
-        case 'major':
-            $resolvedVersion = [$resolvedVersion[0] + 1, 0, 0, 0];
-            $revision = 0;
-            break;
-        case 'minor':
-            $resolvedVersion = [$resolvedVersion[0], $resolvedVersion[1] + 1, 0, 0];
-            $revision = 0;
-            break;
-        case 'patch':
-            $resolvedVersion = [$resolvedVersion[0], $resolvedVersion[1], $resolvedVersion[2] + 1, 0];
-            $revision = 0;
-            break;
-        default:
-            $revision++;
-            break;
-    }
-
-    $group = getChangelogGroup($subject);
-    $changeGroups[$group][] = [
-        'version' => formatVersion($resolvedVersion, $revision),
-        'majorVersion' => $resolvedVersion[0],
-        'sha' => substr($sha, 0, 7),
-        'date' => $date,
-        'subject' => humanizeCommitSubject($subject),
-        'description' => cleanCommitDescription($subject, $body),
-    ];
 }
 
-$displayVersion = formatVersion($resolvedVersion, $revision);
+$displayVersion = formatVersion($tailVersion);
 
 // Latest tag for production version
 $latestTag = null;
