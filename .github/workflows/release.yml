@@ -12,4 +12,7 @@ jobs:
     uses: Box-of-Dragons/StructuredChaos/.github/workflows/family-release.yml@master
     with:
       release-branch: master
+    permissions:
+      contents: write
+      pull-requests: write
     secrets: inherit
