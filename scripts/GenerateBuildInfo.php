@@ -343,7 +343,7 @@ foreach (preg_split('/\x1e/', implode("\n", $logOutput)) ?: [] as $record) {
         continue;
     }
     $commits[] = [
-        'sha' => $parts[0],
+        'sha' => trim($parts[0]),
         'date' => $parts[1],
         'subject' => trim($parts[2]),
         'body' => $parts[3],

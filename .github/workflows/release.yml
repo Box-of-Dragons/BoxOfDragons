@@ -10,13 +10,9 @@ on:
 jobs:
   release:
     uses: Box-of-Dragons/StructuredChaos/.github/workflows/family-release.yml@master
-    secrets: inherit
-
-  deploy:
-    needs: release
-    if: always() && !failure() && !cancelled()
-    uses: Box-of-Dragons/StructuredChaos/.github/workflows/family-deploy.yml@master
     with:
-      branch: master
-      environment: production
+      release-branch: master
+    permissions:
+      contents: write
+      pull-requests: write
     secrets: inherit
