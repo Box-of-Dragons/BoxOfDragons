@@ -1,0 +1,12 @@
+name: Release
+
+# Releases are always manual — Actions → Release → Run workflow.
+# All release policy lives in the shared workflow (StructuredChaos docs/git-rules.md).
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    uses: Box-of-Dragons/StructuredChaos/.github/workflows/family-release.yml@master
+    secrets: inherit
