@@ -10,6 +10,8 @@ on:
 jobs:
   release:
     uses: Box-of-Dragons/StructuredChaos/.github/workflows/family-release.yml@master
+    permissions:
+      contents: write
     secrets: inherit
 
   # dev work reaches protected master only through a PR merge.
