@@ -5,7 +5,7 @@
  * Setup:
  *   1. Set GITHUB_WEBHOOK_SECRET in .env on the VPS
  *   2. In GitHub repo settings → Webhooks → Add webhook:
- *      - Payload URL: https://www.boxofdragons.misssponto.me.uk/webhook.php
+ *      - Payload URL: https://www.boxofdragons.structuredchaos.dev/webhook.php
  *      - Content type: application/json
  *      - Secret: same value as GITHUB_WEBHOOK_SECRET
  *      - Events: Just the push event

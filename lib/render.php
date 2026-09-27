@@ -23,7 +23,7 @@ function is_local_dev(): bool {
 
 /** Get the base URL for shared assets (CSS/JS) from the root Structured Chaos site. */
 function shared_assets_base(): string {
-    return is_local_dev() ? 'http://localhost:4000' : 'https://misssponto.me.uk';
+    return is_local_dev() ? 'http://localhost:4000' : 'https://structuredchaos.dev';
 }
 
 /** Render the global bar (shared JS from StructuredChaos). */

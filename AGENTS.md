@@ -98,9 +98,9 @@ Pushes no longer deploy — the GitHub webhook was removed. `web/webhook.php` is
 Production SSH/deploy details:
 
 - SSH user: `root`
-- Repo working tree: `/home/boxofdragons/htdocs/BoxOfDragons`
-- Public docroot: `/home/boxofdragons/htdocs/www.boxofdragons.misssponto.me.uk/web`
-- Public URL: `https://boxofdragons.misssponto.me.uk/`
+- Repo working tree: `/home/sc-boxofdragons/htdocs/boxofdragons.structuredchaos.dev`
+- Public docroot: `/home/sc-boxofdragons/htdocs/boxofdragons.structuredchaos.dev/web`
+- Public URL: `https://boxofdragons.structuredchaos.dev/`
 
 Content-only database seeding, such as adding archive project entries or taxonomy terms, should be done directly on the VPS database via SSH. Do not add one-off seed scripts to git unless they are intended to be permanent migration tooling.
 
@@ -110,7 +110,7 @@ SSH into the VPS and run:
 
 ```bash
 ssh root@77.68.76.203
-cd /home/boxofdragons/htdocs/BoxOfDragons
+cd /home/sc-boxofdragons/htdocs/boxofdragons.structuredchaos.dev
 git fetch origin master
 git reset --hard origin/master
 bash scripts/deploy.sh

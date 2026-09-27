@@ -28,7 +28,7 @@ The front end is plain PHP with PDO queries against the existing MySQL database 
 
 Most of the development has been done with AI coding tools in the loop. The agent notes that shape how those sessions run are in `AGENTS.md`. The site is hosted on a VPS and deploys automatically when commits land on the master branch via a GitHub webhook.
 
-Production deploy runs from `/home/boxofdragons/htdocs/BoxOfDragons`; the public document root is `/home/boxofdragons/htdocs/www.boxofdragons.misssponto.me.uk/web`. VPS maintenance is done over SSH as `root`.
+Production deploy runs from `/home/sc-boxofdragons/htdocs/boxofdragons.structuredchaos.dev`; the public document root is `/home/sc-boxofdragons/htdocs/boxofdragons.structuredchaos.dev/web`. VPS maintenance is done over SSH as `root`.
 
 ## Repository layout
 

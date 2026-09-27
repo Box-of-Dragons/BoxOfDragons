@@ -685,12 +685,12 @@ JS;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    <script>(function(){var h=location.hostname;var l=h==='localhost'||h==='127.0.0.1'||h.indexOf('.ddev.site')!==-1;var b=(l?'http://localhost:4000':'https://misssponto.me.uk');document.write('<link rel="stylesheet" href="'+b+'/css/shared.css">');})();</script>
+    <script>(function(){var h=location.hostname;var l=h==='localhost'||h==='127.0.0.1'||h.indexOf('.ddev.site')!==-1;var b=(l?'http://localhost:4000':'https://structuredchaos.dev');document.write('<link rel="stylesheet" href="'+b+'/css/shared.css">');})();</script>
     <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
     <div id="global-bar" data-active="box-of-dragons"></div>
-    <script src="https://misssponto.me.uk/js/global-bar.js" defer></script>
+    <script src="https://structuredchaos.dev/js/global-bar.js" defer></script>
     <header class="site-header">
         <div class="shell header-row">
             <h1 class="brand">Box of Dragons</h1>
@@ -728,7 +728,7 @@ $htmlSidebar
     </main>
     <script>window.SITE_FOOTER = { label: 'Box of Dragons', buildInfoSrc: '/js/buildInfo.js' };</script>
     <div id="site-footer"></div>
-    <script src="https://misssponto.me.uk/js/site-footer.js" defer></script>
+    <script src="https://structuredchaos.dev/js/site-footer.js" defer></script>
 </body>
 </html>
 HTML;
